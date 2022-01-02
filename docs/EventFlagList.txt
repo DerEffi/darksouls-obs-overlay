@@ -1,0 +1,207 @@
+2|Boss Defeated, Gaping Dragon
+3|Boss Defeated, Bell Gargoyles
+4|Boss Defeated, Priscilla
+5|Boss Defeated, Sif
+6|Boss Defeated, Pinwheel
+7|Boss Defeated, Nito
+9|Boss Defeated, Chaos Witch Quelaag
+10|Boss Defeated, Bed of Chaos
+11|Boss Defeated, Iron Golem
+12|Boss Defeated, Ornstein & Smough
+13|Boss Defeated, 4 Kings
+14|Boss Defeated, Seath
+15|Boss Defeated, Gwyn
+16|Boss Defeated, Asylum Demon
+250|Obtained, Weapon Smithbox
+251|Obtained, Armor Smithbox
+252|Obtained, Repairbox
+258|Obtained, Bottomless Box
+716|Obtained, Estus Flask
+719|Unknown, Obtained First Spell?
+744|Triggered PvE Sin, Able to Pay Absolution
+780|Obtained, Titanite Shard
+781|Obtained, Large Titanite Shard
+782|Obtained, Green Titanite Shard
+783|Obtained, Titanite Chunk
+784|Obtained, Blue Titanite Chunk
+785|Obtained, White Titanite Chunk
+786|Obtained, Red Titanite Chunk
+787|Obtained, Titanite Slab
+788|Obtained, Blue Titanite Slab
+789|Obtained, White Titanite Slab
+790|Obtained, Red Titanite Slab
+791|Obtained, Dragon Scale
+792|Obtained, Demon Titanite
+793|Obtained, Twinkling Titanite
+850|Covenant, None
+851|Covenant, Way of White
+853|Covenant, Warrior of Sunlight
+854|Covenant, Darkwraith
+855|Covenant, Path of the Dragon
+856|Covenant, Gravelord Servant
+857|Covenant, Forest Hunter
+858|Covenant, Darkmoon
+859|Covenant, Chaos Servant
+1000|Solaire, At First Position
+1001|Solaire, First Encounter Completed
+1004|Solaire, Hostile
+1005|Solaire, Dead
+1031|Darkmoon Knightess, At Starting Position?
+1033|Darkmoon Knightess, Hostile
+1034|Darkmoon Knightess, Dead
+1062|Oscar, Dead (Hollow)
+1073|Oscar, Dead
+1091|Big Hat Logan, Rescued
+1093|Big Hat Logan, Leaves Firelink For Duke's Prison
+1096|Big Hat Logan, Hostile
+1097|Big Hat Logan, Dead
+1111|Griggs, Rescue Completed
+1112|Griggs, Initial Spawn at Firelink
+1113|Griggs, At Firelink After Logan Leaves (Sells More)
+1114|Griggs, Hostile
+1115|Griggs, Dead
+1117|Griggs, Hollow At Sen's Fortress
+1171|Reah, At Firelink
+1176|Reah, Hostile
+1177|Reah, Dead
+1197|Petrus, Hostile
+1198|Petrus, Dead
+1211|Vince, At Firelink
+1213|Vince, Hostile
+1214|Vince, Dead
+1221|Nico, At Firelink
+1223|Nico, Hostile
+1224|Nico, Dead
+1241|Gwyndolin, Disapproves
+1251|Laurentius, Rescue Completed
+1253|Laurentius, Hostile
+1254|Laurentius, Dead
+1256|Laurentius, Informed of Quelana
+1257|Laurentius, Hollow In Blighttown
+1272|Fair Lady, Dead
+1281|Eingyi, Steps Aside
+1283|Eingyi, Hostile
+1294|Quelana, Hostile
+1295|Quelana, Dead
+1311|Ingward, After Lordvessel Placed
+1312|Ingward, After Draining New Londo
+1314|Ingward, Hostile
+1315|Ingward, Dead
+1321|Andre, Hostile
+1322|Andre, Dead
+1341|Vamos, Hostile
+1342|Vamos, Dead
+1361|Giant Blacksmith, Hostile
+1362|Giant Blacksmith, Dead
+1381|Rickert, Hostile
+1382|Rickert, Dead
+1401|Undead Merchant, Hostile
+1402|Undead Merchant, Dead
+1411|Female Undead Merchant, Hostile
+1412|Female Undead Merchant, Dead
+1421|Crestfallen Merchant, Hostile
+1422|Crestfallen Merchant, Dead
+1431|Domhnall, Moved to Firelink
+1434|Domhnall, Hostile
+1435|Domhnall, Dead
+1461|Crestfallen Warrior, Hostile
+1462|Crestfallen Warrior, Dead
+1464|Crestfallen Warrior, Hollow in New Londo
+1512|Siegmeyer, Hostile
+1513|Siegmeyer, Dead
+1571|Lautrec, Rescue Completed
+1574|Lautrec, Hostile
+1575|Lautrec, Dead
+1603|Shiva, Hostile
+1604|Shiva, Dead
+1627|Patches, Hostile
+1628|Patches, Dead
+1641|Frampt, Unknown
+1642|Frampt, Unknown
+1647|Frampt, Disapproves and Leaves
+1671|Kaathe, Appears?
+1677|Kaathe, Disapproves and Leaves
+1701|Oswald, Hostile
+1702|Oswald, Dead
+1711|Alvina, Disapproves and Leaves
+1763|Shiva's Bodyguard, Hostile
+1764|Shiva's Bodyguard, Dead
+1766|Shiva's Bodyguard, ?
+1821|Gough, Not Present
+1822|Gough, Hostile
+1823|Gough, Dead
+1841|Chester, Hostile
+1842|Chester, Dead
+1862|Ciaran, Gifted Artorias's Soul
+1863|Ciaran, Hostile
+1864|Ciaran, Dead
+1872|Elizabeth, Dead
+11000111|Depths, Door to Blighttown
+11010090|Undead Burg, Fog Gate
+11010100|Undead Burg, Shortcut Ladder
+11010120|Undead Burg, Flaming Barrel kicked down
+11010160|Undead Burg, Shortcut Door to Lower Burg
+11010172|Undead Burg, Basement Key Door
+11010191|Undead Burg, Watchtower upper door
+11010192|Undead Burg, Watchtower lower door
+11010591|Obtained, White Sign Soapstone
+11010594|Obtained, Miracle: Lightning Spear
+11010621|Undead Burg, Sunlight Altar gate open
+11010650|Undead Burg, Black Firebomb chest opened
+11010651|Undead Burg, Gold Pine Resin chest opened
+11010700|Undead Parish, First Bell of Awakening
+11010790|Undead Burg, Hellkite's First Appearance
+11010791|Undead Burg, Hellkite's Second Appearance
+11010861|Dead, Undead Burg, Black Knight
+11010863|Dead, Undead Parish, Berenike Knight
+11010865|Dead, Undead Parish, Channeler
+11010899|Unknown, Related to Second Bell?
+11010901|Boss Defeated, Taurus Demon
+11010902|Boss Defeated, Capra Demon
+11015031|Pray at the Altar of Sunlight
+11020302|Undead Parish, Elevator to Firelink
+11020599|Petrus, Gifts Copper Coin
+11020602|Laurentius, Gifts Pyromancy Flame
+11020700|Firelink Shrine, Lloyd's Talisman chest opened
+11020701|Firelink Shrine, Talisman chest opened
+11020702|Firelink Shrine, Homeward Bone chest opened
+11020703|Firelink Shrine, Cracked Red Eye Orb opened
+11025060|Firelink Shrine, Curled Up Like A Ball
+11200592|Alvina, Gift Cat Covenant Ring
+11200900|Boss Defeated, Moonlight Butterfly
+11210000|Boss Defeated, Sanctuary Guardian
+11210001|Boss Defeated, Artorias
+11210002|Boss Defeated, Manus
+11210004|Boss Defeated, Kalameet
+11210650|Oolacile, Crest Key Door
+11400200|Blighttown, Second Bell of Awakening
+11410401|Demon Ruins, Elevator to Quelaag's Domain
+11410410|Boss Defeated, Demon Firesage
+11410900|Boss Defeated, Ceaseless Discharge
+11410901|Boss Defeated, Centipede Demon
+11500101|Sen's Fortress, Cage Elevator
+11500200|Sen's Fortress, Main Gate Open
+11510200|Anor Londo, Large Doorway to Main Hall
+11510210|Anor Londo, Shortcut Door to Giant Blacksmith
+11510251|Anor Londo, Shortcut Door to Solaire Bonfire
+11510272|Dark Anor Londo
+11510900|Boss Defeated, Gwyndolin
+11600100|New Londo Ruins, Drained
+11600110|New Londo Ruins, Door to the Seal
+11600120|New Londo Ruins, Valley of Drakes Door
+11600160|New Londo Ruins, Shortcut Ladder
+11600201|New Londo Ruins, Elevator to Firelink
+11600231|Valley of Drakes, Elevator to Darkroot
+11600592|Obtained, Key to the Seal
+11600650|New Londo, Estoc-carrying Corpse Collapsed
+11605123|Valley of Drakes, Elevator to Darkroot Inoperable
+11810090|Undead Asylum, Pre-Oscar Fog Gate
+11810103|Undead Asylum, Cell Door
+11810104|Undead Asylum, F2 West Door
+11810105|Undead Asylum, Shortcut Door
+11810106|Undead Asylum, F2 East Door
+11810110|Undead Asylum, Big Pilgrim Door
+11810112|Undead Asylum, Boss Door
+11810211|Undead Asylum, Trap Sprung Near Oscar
+11810590|Oscar, Gift Estus Flask
+11810591|Oscar, Gift Undead Asylum F2 East Key
