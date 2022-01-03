@@ -147,10 +147,6 @@ export default class OBSView extends React.Component<{}, AdminViewState> {
                                         <td>Cracked Red Eye Orb Chest</td>
                                         <td>{this.state.data.FirelinkShrine.CrackedRedEyeOrbChest ? "geöffnet" : "geschlossen"}</td>
                                     </tr>
-                                    <tr className={this.state.data.FirelinkShrine.CrackedRedEyeOrbChest ? "" : "inactive"}>
-                                        <td>Cracked Red Eye Orb Chest</td>
-                                        <td>{this.state.data.FirelinkShrine.CrackedRedEyeOrbChest ? "geöffnet" : "geschlossen"}</td>
-                                    </tr>
                                     <tr className={this.state.data.FirelinkShrine.LloydTalismanChest ? "" : "inactive"}>
                                         <td>Lloyd's Talisman Chest</td>
                                         <td>{this.state.data.FirelinkShrine.LloydTalismanChest ? "geöffnet" : "geschlossen"}</td>

@@ -18,6 +18,7 @@ namespace DarkSoulsOBSOverlay.Services.AOB
         public int ChrClassWarpBoost = 0x0;
         public enum ChrClassWarp
         {
+            SaveSlot = 0xAA0,
             LastBonfire = 0xB24,
             StableX = 0xB90,
             StableY = 0xB94,

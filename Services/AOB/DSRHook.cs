@@ -119,6 +119,11 @@ namespace DarkSoulsOBSOverlay.Services.AOB
             get => WorldChrBase.ReadBoolean((int)DSROffsets.WorldChrBase.DeathCam);
         }
 
+        public int SaveSlot
+        {
+            get => ChrClassWarp.ReadInt32((int)DSROffsets.ChrClassWarp.SaveSlot);
+        }
+
         public int LastBonfire
         {
             get => ChrClassWarp.ReadInt32((int)DSROffsets.ChrClassWarp.LastBonfire + Offsets.ChrClassWarpBoost);

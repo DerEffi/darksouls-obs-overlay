@@ -59,10 +59,10 @@ namespace DarkSoulsOBSOverlay
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "Frontend";
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
+
+#if DEBUG
+                spa.UseReactDevelopmentServer(npmScript: "start");
+#endif
             });
         }
     }

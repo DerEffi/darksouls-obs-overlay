@@ -21,8 +21,10 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 try
                 {
-                    //For dev only
-                    //GetPointerAddresses();
+
+#if DEBUG
+                    GetPointerAddresses();
+#endif
 
                     return new DarkSoulsData
                     {
@@ -69,21 +71,23 @@ namespace DarkSoulsOBSOverlay.Services
             return new();
         }
 
+#if DEBUG
         //Get AOB Pointer Addresses for Development of additional properties with new Offsets
         public static void GetPointerAddresses()
         {
-            var test1 = darkSouls.ChrClassBasePtr.Resolve();
-            var test2 = darkSouls.ChrClassWarp.Resolve();
-            var test3 = darkSouls.WorldChrBase.Resolve();
-            var test4 = darkSouls.EventFlags.Resolve();
-            var test5 = darkSouls.ChrFollowCam.Resolve();
-            var test6 = darkSouls.ChrData1.Resolve();
-            var test7 = darkSouls.ChrData2.Resolve();
-            var test8 = darkSouls.ChrMapData.Resolve();
-            var test9 = darkSouls.ChrPosData.Resolve();
-            var test10 = darkSouls.AreaBase.Resolve();
-            var test11 = darkSouls.CountersBase.Resolve();
+            var ChrClassBasePtr = darkSouls.ChrClassBasePtr.Resolve();
+            var ChrClassWarp = darkSouls.ChrClassWarp.Resolve();
+            var WorldChrBase = darkSouls.WorldChrBase.Resolve();
+            var EventFlags = darkSouls.EventFlags.Resolve();
+            var ChrFollowCam = darkSouls.ChrFollowCam.Resolve();
+            var ChrData1 = darkSouls.ChrData1.Resolve();
+            var ChrData2 = darkSouls.ChrData2.Resolve();
+            var ChrMapData = darkSouls.ChrMapData.Resolve();
+            var ChrPosData = darkSouls.ChrPosData.Resolve();
+            var AreaBase = darkSouls.AreaBase.Resolve();
+            var CountersBase = darkSouls.CountersBase.Resolve();
         }
+#endif
 
         public static void SendDarkSoulsData()
         {
