@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Timers;
 
 namespace DarkSoulsOBSOverlay
 {
@@ -32,14 +30,8 @@ namespace DarkSoulsOBSOverlay
             });
 
             // Custom DarkSouls Background service
-            Task.Run(() =>
-            {
-                while (true)
-                {
-                    DarkSoulsReader.SendDarkSoulsData();
-                    Thread.Sleep(DarkSoulsReader.settings.UpdateInterval * 100);
-                }
-            });
+            DarkSoulsReader.Timer.Elapsed += (object source, ElapsedEventArgs e) => { DarkSoulsReader.SendDarkSoulsData(); };
+            DarkSoulsReader.Timer.Start();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +53,7 @@ namespace DarkSoulsOBSOverlay
                 spa.Options.SourcePath = "Frontend";
 
 #if DEBUG
-                //spa.UseReactDevelopmentServer(npmScript: "start");
+                spa.UseReactDevelopmentServer(npmScript: "start");
 #endif
             });
         }

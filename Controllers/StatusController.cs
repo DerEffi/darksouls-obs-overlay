@@ -27,11 +27,7 @@ namespace DarkSoulsOBSOverlay.Controllers
                 {
                     HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 }
-            }
-            catch (Exception e)
-            {
-
-            }
+            } catch {}
         }
 
         [HttpGet]

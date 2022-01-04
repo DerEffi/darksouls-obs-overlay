@@ -5,7 +5,6 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace DarkSoulsOBSOverlay.Services
 {
@@ -38,7 +37,7 @@ namespace DarkSoulsOBSOverlay.Services
         public static async Task AddClient(HttpContext context, WebSocket webSocket)
         {
             Clients.Add(webSocket);
-            DarkSoulsReader.SendDarkSoulsData();
+            DarkSoulsReader.SendDarkSoulsData(true);
 
             ArraySegment<byte> message = new ArraySegment<byte>(new byte[4096]);
             while (webSocket.State == WebSocketState.Open)

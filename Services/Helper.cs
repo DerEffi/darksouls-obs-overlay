@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Linq;
 
 namespace DarkSoulsOBSOverlay.Services
@@ -22,7 +23,7 @@ namespace DarkSoulsOBSOverlay.Services
                 if(CanDirectlyCompare(p.PropertyType))
                 {
                     // Don't send update for clock ticks (handled in frontend)
-                    if (p.Name == "Clock" && (!DarkSoulsReader.settings.ClockEnabled || Math.Abs((double)p.GetValue(objectA) - (double)p.GetValue(objectB)) < DarkSoulsReader.settings.UpdateInterval + 1)) return true;
+                    if (p.Name == "Clock" && (Math.Abs((double)p.GetValue(objectA) - (double)p.GetValue(objectB)) < DarkSoulsReader.Settings.UpdateInterval + 1)) return true;
                     
                     if (p.GetValue(objectA) == null && p.GetValue(objectB) == null) return true;
                     if (p.GetValue(objectA) == null || p.GetValue(objectB) == null) return false;
@@ -44,6 +45,18 @@ namespace DarkSoulsOBSOverlay.Services
         private static bool CanDirectlyCompare(Type type)
         {
             return typeof(IComparable).IsAssignableFrom(type) || type.IsPrimitive || type.IsValueType;
+        }
+
+        /// <summary>
+        /// Makes a deepcopy of objects for passing by value instead of ref
+        /// </summary>
+        /// <param name="obj">The object to clone.</param>
+        /// <returns>
+        ///   <c>obj</c> as a copy 
+        /// </returns>
+        public static T Clone<T>(T obj)
+        {
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(obj));
         }
     }
 }

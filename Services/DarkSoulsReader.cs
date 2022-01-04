@@ -3,14 +3,20 @@ using DarkSoulsOBSOverlay.Models.Events;
 using DarkSoulsOBSOverlay.Services.AOB;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Timers;
 
 namespace DarkSoulsOBSOverlay.Services
 {
     public static class DarkSoulsReader
     {
         private static DSRHook darkSouls = null;
-        private static DarkSoulsData LastStats = null;
-        public static Settings settings = new();
+        private static DarkSoulsData SavedStats = new();
+        public static Settings Settings = new();
+        public static Timer Timer = new()
+        {
+            Interval = Settings.UpdateInterval * 1000,
+            AutoReset = true,
+        };
 
         public static DarkSoulsData GetCurrentStats()
         {
@@ -22,19 +28,18 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 try
                 {
-
 #if DEBUG
                     GetPointerAddresses();
 #endif
 
-                    DarkSoulsData Stats = LastStats;
+                    DarkSoulsData Stats = Helper.Clone(SavedStats);
 
                     //Base Data that always gets reloaded
-                    Stats.Settings = settings;
+                    Stats.Settings = Settings;
                     Stats.Connected = true;
                     Stats.Loaded = darkSouls.Loaded;
                     Stats.Version = darkSouls.Version;
-                    Stats.Clock = settings.ClockEnabled ? darkSouls.GetSeconds() : 0;
+                    Stats.Clock = darkSouls.GetSeconds();
                     Stats.Char = new()
                     {
                         CharacterName = darkSouls.CharName,
@@ -82,7 +87,7 @@ namespace DarkSoulsOBSOverlay.Services
                         ChaosServant = darkSouls.ReadEventFlag(CommonEvents.ChaosServant),
                     };
 
-                    if(LastStats.Char.LastBonfireId == -1 && Stats.Char.LastBonfireId != -1)
+                    if(SavedStats.Char.LastBonfireId == -1 && Stats.Char.LastBonfireId != -1)
                     {
                         //Reload everything on new SaveGame Load
                         Stats.AnorLondo = ReadAnorLondoData();
@@ -211,17 +216,21 @@ namespace DarkSoulsOBSOverlay.Services
             return new();
         }
 
-        public static void SendDarkSoulsData()
+        public static void SendDarkSoulsData(bool force = false)
         {
-            DarkSoulsData Stats = GetCurrentStats();
-            if (Stats != null && !Helper.StatsAreEqual(LastStats, Stats))
+            DarkSoulsData LastStats = Helper.Clone(SavedStats);
+            SavedStats = GetCurrentStats();
+            if (force || !Helper.StatsAreEqual(LastStats, SavedStats))
             {
                 try
                 {
-                    CommunicationService.SendMessage(JsonConvert.SerializeObject(Stats), false);
-                } catch {}
+                    CommunicationService.SendMessage(JsonConvert.SerializeObject(SavedStats), false);
+#if DEBUG
+                    Debug.WriteLine("Update detected: Sending data through websocket");
+#endif
+                }
+                catch {}
             }
-            LastStats = Stats;
         }
 
 #region ReadEventFlags
