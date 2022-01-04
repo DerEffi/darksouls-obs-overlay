@@ -2,6 +2,6 @@
 {
     public static class TombOfGiantsEvents
     {
-        public static int Nito { get; set; } = 7; //defeated
+        public static int Nito { get; } = 7; //defeated
     }
 }

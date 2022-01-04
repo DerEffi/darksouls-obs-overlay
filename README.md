@@ -4,7 +4,7 @@ This application reads the current DarkSouls: Remastered stats from memory and p
 # Credits
 [JKAnderson](https://github.com/JKAnderson) for most of the source code wich reads the data from the dark souls application memory via AOBScans
 
-[Illusory Wall](https://twitter.com/illusorywall) for the [event flag list](docs/EventFlagList.txt) found in the docs directory
+[IllusoryWall](https://twitter.com/illusorywall) for the [event flag list](docs/EventFlagList.txt) found in the docs directory
 
 [Grimrukh](https://github.com/Grimrukh) for the soulstruct python tool for extracting data like id's from the game files
 

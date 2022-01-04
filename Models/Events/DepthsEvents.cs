@@ -2,7 +2,7 @@
 {
     public static class DepthsEvents
     {
-        public static int BlighttownDoor { get; set; } = 11000111; //opened
-        public static int GapingDragon { get; set; } = 2; //defeated
+        public static int BlighttownDoor { get; } = 11000111; //opened
+        public static int GapingDragon { get; } = 2; //defeated
     }
 }

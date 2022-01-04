@@ -2,6 +2,6 @@
 {
     public static class CrystalCaveEvents
     {
-        public static int Seath { get; set; } = 14; //defeated
+        public static int Seath { get; } = 14; //defeated
     }
 }

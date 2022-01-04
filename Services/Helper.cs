@@ -11,7 +11,7 @@ namespace DarkSoulsOBSOverlay.Services
         /// <param name="objectA">The first object to compare.</param>
         /// <param name="objectB">The second object to compre.</param>
         /// <returns><c>true</c> if all property values are equal, otherwise <c>false</c>.</returns>
-        public static bool AreEqual<T>(T objectA, T objectB)
+        public static bool StatsAreEqual<T>(T objectA, T objectB)
         {
             if (objectA == null && objectB == null) return true;
 
@@ -21,12 +21,15 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 if(CanDirectlyCompare(p.PropertyType))
                 {
+                    // Don't send update for clock ticks (handled in frontend)
+                    if (p.Name == "Clock" && (!DarkSoulsReader.settings.ClockEnabled || Math.Abs((double)p.GetValue(objectA) - (double)p.GetValue(objectB)) < DarkSoulsReader.settings.UpdateInterval + 1)) return true;
+                    
                     if (p.GetValue(objectA) == null && p.GetValue(objectB) == null) return true;
                     if (p.GetValue(objectA) == null || p.GetValue(objectB) == null) return false;
                     return p.GetValue(objectA).Equals(p.GetValue(objectB));
                 } else
                 {
-                    return AreEqual(p.GetValue(objectA), p.GetValue(objectB));
+                    return StatsAreEqual(p.GetValue(objectA), p.GetValue(objectB));
                 }
             });
         }

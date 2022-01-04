@@ -10,8 +10,8 @@
         public static int F2EastDoor { get; } = 11810106; //opened
         public static int BigPilgrimDoor { get; } = 11810110; //opened
         public static int OscarTrap { get; } = 11810211; //sprung
-        public static int OscarGiftEstus { get; set; } = 11810590; //obtained
-        public static int OscarGiftF2EastKey { get; set; } = 11810591; //obtained
-        public static int BossDoor { get; set; } = 11810112; //opened
+        public static int OscarGiftEstus { get; } = 11810590; //obtained
+        public static int OscarGiftF2EastKey { get; } = 11810591; //obtained
+        public static int BossDoor { get; } = 11810112; //opened
     }
 }

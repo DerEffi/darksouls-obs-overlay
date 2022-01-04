@@ -2,6 +2,6 @@
 {
     public static class LostIzalithEvents
     {
-        public static int BedOfChaos { get; set; } = 10; //defeated
+        public static int BedOfChaos { get; } = 10; //defeated
     }
 }

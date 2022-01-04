@@ -2,6 +2,6 @@
 {
     public static class KilnOfTheFirstFlameEvents
     {
-        public static int Gwyn { get; set; } = 15; //defeated
+        public static int Gwyn { get; } = 15; //defeated
     }
 }

@@ -2,6 +2,6 @@
 {
     public static class QueelagsDomainEvents
     {
-        public static int BellOfAwakening { get; set; } = 11400200;
+        public static int BellOfAwakening { get; } = 11400200;
     }
 }

@@ -2,12 +2,12 @@
 {
     public static class UndeadParishEvents
     {
-        public static int FirelinkElevator { get; set; } = 11020302; //operatable
-        public static int AltarOfSunlight { get; set; } = 11015031; //prayed
-        public static int BerenikeKnight { get; set; } = 11010863; //defeated
-        public static int Channeler { get; set; } = 11010865; //defeated
-        public static int BellOfAwakening { get; set; } = 11010700; //ringed
-        public static int LightningSpear { get; set; } = 11010594; //obtained
-        public static int BellGargoyles { get; set; } = 3; //defeated
+        public static int FirelinkElevator { get; } = 11020302; //operatable
+        public static int AltarOfSunlight { get; } = 11015031; //prayed
+        public static int BerenikeKnight { get; } = 11010863; //defeated
+        public static int Channeler { get; } = 11010865; //defeated
+        public static int BellOfAwakening { get; } = 11010700; //ringed
+        public static int LightningSpear { get; } = 11010594; //obtained
+        public static int BellGargoyles { get; } = 3; //defeated
     }
 }

@@ -37,7 +37,7 @@ namespace DarkSoulsOBSOverlay
                 while (true)
                 {
                     DarkSoulsReader.SendDarkSoulsData();
-                    Thread.Sleep(DarkSoulsReader.settings.UpdateInterval * 1000);
+                    Thread.Sleep(DarkSoulsReader.settings.UpdateInterval * 100);
                 }
             });
         }
@@ -61,7 +61,7 @@ namespace DarkSoulsOBSOverlay
                 spa.Options.SourcePath = "Frontend";
 
 #if DEBUG
-                spa.UseReactDevelopmentServer(npmScript: "start");
+                //spa.UseReactDevelopmentServer(npmScript: "start");
 #endif
             });
         }

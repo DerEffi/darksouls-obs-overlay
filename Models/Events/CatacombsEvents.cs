@@ -2,6 +2,6 @@
 {
     public static class CatacombsEvents
     {
-        public static int Pinwheel { get; set; } = 6; //defeated
+        public static int Pinwheel { get; } = 6; //defeated
     }
 }
