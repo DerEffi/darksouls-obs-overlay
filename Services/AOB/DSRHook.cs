@@ -2,6 +2,8 @@
 using PropertyHook;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace DarkSoulsOBSOverlay.Services.AOB
@@ -21,6 +23,8 @@ namespace DarkSoulsOBSOverlay.Services.AOB
         public PHPointer ChrPosData;
         public PHPointer ChrData2;
         public PHPointer EventFlags;
+
+        public int[] eventFlags = new int[71820000];
 
         public DSRHook(int refreshInterval, int minLifetime) :
             base(refreshInterval, minLifetime, p => p.MainWindowTitle == "DARK SOULS™: REMASTERED")
@@ -271,7 +275,7 @@ namespace DarkSoulsOBSOverlay.Services.AOB
             {"181", 17},
         };
 
-        private int getEventFlagOffset(int ID, out uint mask)
+        public int getEventFlagOffset(int ID, out uint mask)
         {
             string idString = ID.ToString("D8");
             if (idString.Length == 8)
@@ -301,5 +305,42 @@ namespace DarkSoulsOBSOverlay.Services.AOB
             return EventFlags.ReadFlag32(offset, mask);
         }
 
+        public List<KeyValuePair<int, int>> CompareEventFlags()
+        {
+            List<KeyValuePair<int, int>> updated = new();
+            eventFlagGroups.ToList().ForEach(g =>
+            {
+                eventFlagAreas.ToList().ForEach(a =>
+                {
+                    for (int counter = 0; counter < 10000; counter = counter+32)
+                    {
+                        int Flag = Convert.ToInt32($"{g.Key}{a.Key}{counter:D4}");
+                        int value = this.ReadEventFlagBase(Flag);
+                        int comp = value ^ eventFlags[Flag];
+                        if(comp != 0)
+                        {
+                            string comparer = $"{Convert.ToString(comp, 2)}".PadLeft(32, '0');
+                            string newbits = Convert.ToString(value, 2).PadLeft(32, '0');
+                            for (int j = 0; j < 32; j++)
+                            {
+                                if (comparer[j] == '1')
+                                {
+
+                                    updated.Add(new KeyValuePair<int, int>(Flag+j, newbits[j]));
+                                }
+                            }
+                            eventFlags[Flag] = value;
+                        }
+                    }
+                });
+            });
+            return updated;
+        }
+
+        public int ReadEventFlagBase(int ID)
+        {
+            int offset = getEventFlagOffset(ID, out uint mask);
+            return EventFlags.ReadInt32(offset);
+        }
     }
 }

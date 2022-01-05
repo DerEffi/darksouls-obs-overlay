@@ -2,7 +2,10 @@
 using DarkSoulsOBSOverlay.Models.Events;
 using DarkSoulsOBSOverlay.Services.AOB;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Timers;
 
 namespace DarkSoulsOBSOverlay.Services
@@ -28,8 +31,9 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 try
                 {
+
 #if DEBUG
-                    GetPointerAddresses();
+                    //GetPointerAddresses();
 #endif
 
                     DarkSoulsData Stats = Helper.Clone(SavedStats);
@@ -40,6 +44,7 @@ namespace DarkSoulsOBSOverlay.Services
                     Stats.Loaded = darkSouls.Loaded;
                     Stats.Version = darkSouls.Version;
                     Stats.Clock = darkSouls.GetSeconds();
+                    Stats.UpdatedEventFlags = Settings.CompareEventFlags ? darkSouls.CompareEventFlags() : new();
                     Stats.Char = new()
                     {
                         CharacterName = darkSouls.CharName,
@@ -210,7 +215,11 @@ namespace DarkSoulsOBSOverlay.Services
 
                     return Stats;
                     
-                } catch {}
+                } catch (Exception e) {
+#if DEBUG
+                    Debug.Write(e.ToString());
+#endif
+                }
             }
 
             return new();

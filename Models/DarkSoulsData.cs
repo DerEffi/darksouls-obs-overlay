@@ -1,4 +1,6 @@
-﻿namespace DarkSoulsOBSOverlay.Models
+﻿using System.Collections.Generic;
+
+namespace DarkSoulsOBSOverlay.Models
 {
     public class DarkSoulsData
     {
@@ -7,6 +9,7 @@
         public bool Loaded { get; set; } = false;
         public string Version { get; set; } = null;
         public double Clock { get; set; } = 0;
+        public List<KeyValuePair<int, int>> UpdatedEventFlags { get; set; } = new();
         public CharData Char { get; set; } = new();
         
         //EventFlags
