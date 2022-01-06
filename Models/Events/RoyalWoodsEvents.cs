@@ -2,7 +2,7 @@
 {
     public static class RoyalWoodsEvents
     {
-        public static int Kalameet { get; } = 11210004; //defeated
-        public static int Artorias { get; } = 11210001; //defeated
+        public const int Kalameet = 11210004; //defeated
+        public const int Artorias = 11210001; //defeated
     }
 }

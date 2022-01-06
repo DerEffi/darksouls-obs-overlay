@@ -2,6 +2,6 @@
 {
     public static class ChasmOfTheAbyssEvents
     {
-        public static int Manus { get; } = 11210002; //defeated
+        public const int Manus = 11210002; //defeated
     }
 }

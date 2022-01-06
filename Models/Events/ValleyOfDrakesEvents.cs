@@ -2,8 +2,8 @@
 {
     public static class ValleyOfDrakesEvents
     {
-        public static int DarkrootElevator { get; } = 11600231; //inoperable
-        public static int DarkrootElevatorInoperable { get; } = 11605123; //inoperable
-        public static int KeyToTheSeal { get; } = 11600592; //obtained
+        public const int DarkrootElevator = 11600231; //inoperable
+        public const int DarkrootElevatorInoperable = 11605123; //inoperable
+        public const int KeyToTheSeal = 11600592; //obtained
     }
 }

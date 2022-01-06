@@ -2,6 +2,6 @@
 {
     public static class BlighttownEvents
     {
-        public static int ChaosWitchQueelag { get; } = 9; //defeated
+        public const int ChaosWitchQueelag = 9; //defeated
     }
 }

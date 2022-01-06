@@ -2,8 +2,8 @@
 {
     public static class DarkrootGardenEvents
     {
-        public static int MoonlightButterfly { get; } = 11200900; //defeated
-        public static int CatCovenantRing { get; } = 11200592; //gifted
-        public static int Sif { get; } = 5; //defeated
+        public const int MoonlightButterfly = 11200900; //defeated
+        public const int CatCovenantRing = 11200592; //gifted
+        public const int Sif = 5; //defeated
     }
 }

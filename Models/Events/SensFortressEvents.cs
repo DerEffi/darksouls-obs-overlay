@@ -2,8 +2,8 @@
 {
     public static class SensFortressEvents
     {
-        public static int CageElevator { get; } = 11500101; //operatable
-        public static int MainGate { get; } = 11500200; //open
-        public static int IronGolem { get; } = 11; //defeated
+        public const int CageElevator = 11500101; //operatable
+        public const int MainGate = 11500200; //open
+        public const int IronGolem = 11; //defeated
     }
 }

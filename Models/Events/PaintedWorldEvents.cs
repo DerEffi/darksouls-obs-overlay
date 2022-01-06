@@ -2,6 +2,6 @@
 {
     public static class PaintedWorldEvents
     {
-        public static int Priscilla { get; } = 4; //defeated
+        public const int Priscilla = 4; //defeated
     }
 }

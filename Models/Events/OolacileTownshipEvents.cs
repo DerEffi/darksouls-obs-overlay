@@ -2,6 +2,6 @@
 {
     public static class OolacileTownshipEvents
     {
-        public static int CrestKeyDoor { get; } = 11210650; //opened
+        public const int CrestKeyDoor = 11210650; //opened
     }
 }
