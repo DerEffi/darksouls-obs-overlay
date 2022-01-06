@@ -8,7 +8,6 @@ namespace DarkSoulsOBSOverlay.Models
         public bool Connected { get; set; } = false;
         public bool Loaded { get; set; } = false;
         public string Version { get; set; } = null;
-        public double Clock { get; set; } = 0;
         public List<KeyValuePair<int, int>> UpdatedEventFlags { get; set; } = new();
         public CharData Char { get; set; } = new();
         
@@ -51,6 +50,8 @@ namespace DarkSoulsOBSOverlay.Models
         public int Health { get; set; } = 0;
         public int HealthMax { get; set; } = 0;
         public int Deaths { get; set; } = 0;
+        public double Clock { get; set; } = 0;
+        public int SaveSlot { get; set; } = 0;
     }
 
     public class CommonData

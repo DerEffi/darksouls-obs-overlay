@@ -14,6 +14,7 @@ namespace DarkSoulsOBSOverlay.Services
     {
         private static DSRHook darkSouls = null;
         private static DarkSoulsData SavedStats = new();
+        private static DarkSoulsResettedData ResettedStats = new();
         private static Settings _settings = new();
         public readonly static Timer Timer = new()
         {
@@ -54,7 +55,6 @@ namespace DarkSoulsOBSOverlay.Services
                     Stats.Connected = true;
                     Stats.Loaded = darkSouls.Loaded;
                     Stats.Version = darkSouls.Version;
-                    Stats.Clock = darkSouls.GetSeconds();
                     Stats.UpdatedEventFlags = _settings.CompareEventFlags ? darkSouls.CompareEventFlags() : new();
                     Stats.Char = new()
                     {
@@ -68,7 +68,9 @@ namespace DarkSoulsOBSOverlay.Services
                         Area = darkSouls.GetArea(),
                         AreaId = darkSouls.Area,
                         Deaths = darkSouls.Deaths,
-                    };
+                        Clock = darkSouls.GetSeconds(),
+                        SaveSlot = darkSouls.SaveSlot,
+                };
                     Stats.Common = new() {
                         WeaponSmithbox = darkSouls.ReadEventFlag(CommonEvents.WeaponSmithbox),
                         ArmorSmithbox = darkSouls.ReadEventFlag(CommonEvents.ArmorSmithbox),
@@ -240,8 +242,20 @@ namespace DarkSoulsOBSOverlay.Services
         {
             DarkSoulsData LastStats = Helper.Clone(SavedStats);
             SavedStats = GetCurrentStats();
+
             if (force || !Helper.StatsAreEqual(LastStats, SavedStats))
             {
+                try
+                {
+                    if (SavedStats.Loaded && (SavedStats.Char.Clock < ResettedStats.Clock || SavedStats.Char.SaveSlot != ResettedStats.SaveSlot || SavedStats.Char.CharacterName != ResettedStats.CharacterName))
+                    {
+                        ResettedStats = FileService.LoadResettedData(SavedStats);
+                    }
+
+                    //TODO Save when resettable event flags change
+                    //TODO replace Event Flag Values for reseted event flags
+                } catch { }
+
                 try
                 {
                     if(_settings.CompareEventFlags)
