@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Diagnostics;
 using System.Timers;
 
 namespace DarkSoulsOBSOverlay
@@ -29,9 +28,12 @@ namespace DarkSoulsOBSOverlay
                 configuration.RootPath = "Frontend/build";
             });
 
-            // Custom DarkSouls Background service
+            // Custom DarkSouls Background service for reading data
             DarkSoulsReader.Timer.Elapsed += (object source, ElapsedEventArgs e) => { DarkSoulsReader.SendDarkSoulsData(); };
             DarkSoulsReader.Timer.Start();
+
+            // Load Settings from file if exists
+            DarkSoulsReader.SetSettings(FileService.LoadSettings());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

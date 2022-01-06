@@ -23,7 +23,7 @@ namespace DarkSoulsOBSOverlay.Services
                 if(CanDirectlyCompare(p.PropertyType))
                 {
                     // Don't send update for clock ticks (handled in frontend)
-                    if (p.Name == "Clock" && (Math.Abs((double)p.GetValue(objectA) - (double)p.GetValue(objectB)) < DarkSoulsReader.Settings.UpdateInterval + 1)) return true;
+                    if (p.Name == "Clock" && (Math.Abs((double)p.GetValue(objectA) - (double)p.GetValue(objectB)) < DarkSoulsReader.GetSettings().UpdateInterval + 1)) return true;
                     
                     if (p.GetValue(objectA) == null && p.GetValue(objectB) == null) return true;
                     if (p.GetValue(objectA) == null || p.GetValue(objectB) == null) return false;

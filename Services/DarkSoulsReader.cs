@@ -14,12 +14,23 @@ namespace DarkSoulsOBSOverlay.Services
     {
         private static DSRHook darkSouls = null;
         private static DarkSoulsData SavedStats = new();
-        public static Settings Settings = new();
-        public static Timer Timer = new()
+        private static Settings _settings = new();
+        public readonly static Timer Timer = new()
         {
-            Interval = Settings.UpdateInterval * 1000,
+            Interval = _settings.UpdateInterval * 1000,
             AutoReset = true,
         };
+
+        public static Settings GetSettings()
+        {
+            return _settings;
+        }
+
+        public static void SetSettings(Settings settings)
+        {
+            _settings = settings;
+            FileService.SaveSettings(settings);
+        }
 
         public static DarkSoulsData GetCurrentStats()
         {
@@ -39,12 +50,12 @@ namespace DarkSoulsOBSOverlay.Services
                     DarkSoulsData Stats = Helper.Clone(SavedStats);
 
                     //Base Data that always gets reloaded
-                    Stats.Settings = Settings;
+                    Stats.Settings = _settings;
                     Stats.Connected = true;
                     Stats.Loaded = darkSouls.Loaded;
                     Stats.Version = darkSouls.Version;
                     Stats.Clock = darkSouls.GetSeconds();
-                    Stats.UpdatedEventFlags = Settings.CompareEventFlags ? darkSouls.CompareEventFlags() : new();
+                    Stats.UpdatedEventFlags = _settings.CompareEventFlags ? darkSouls.CompareEventFlags() : new();
                     Stats.Char = new()
                     {
                         CharacterName = darkSouls.CharName,
@@ -233,10 +244,11 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 try
                 {
+                    if(_settings.CompareEventFlags)
+                    {
+                        FileService.WriteEventLog(SavedStats);
+                    }
                     CommunicationService.SendMessage(JsonConvert.SerializeObject(SavedStats), false);
-#if DEBUG
-                    Debug.WriteLine("Update detected: Sending data through websocket");
-#endif
                 }
                 catch {}
             }

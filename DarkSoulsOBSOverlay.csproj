@@ -18,6 +18,17 @@
 	<PlatformTarget>x64</PlatformTarget>
 	<StartupObject>DarkSoulsOBSOverlay.Program</StartupObject>
     <PublishReadyToRun>true</PublishReadyToRun>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/DerEffi/darksouls-obs-overlay</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/DerEffi/darksouls-obs-overlay</PackageProjectUrl>
+    <Description>This application reads the current DarkSouls: Remastered stats from memory and provides an SPA for displaying the data in obs and an API (WebSocket) for further processing in other external applications </Description>
+    <Company />
+    <Authors>DerEffi</Authors>
+    <PackageTags>react;api;games;spa;websocket;asp-net-core;asp-net;obs;darksouls;remastered;aob-scan;dldu</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -53,6 +64,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
