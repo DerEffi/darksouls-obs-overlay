@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DarkSoulsOBSOverlay.Services
@@ -18,7 +19,13 @@ namespace DarkSoulsOBSOverlay.Services
 
             if (objectA == null || objectB == null) return false;
 
-            return objectA.GetType().GetProperties().ToList().All(p =>
+            Type type = objectA.GetType();
+            if(objectA.GetType().Namespace == "System.Collections.Generic")
+            {
+                return objectA.Equals(objectB);
+            }
+
+            return type.GetProperties().ToList().All(p =>
             {
                 if(CanDirectlyCompare(p.PropertyType))
                 {
@@ -44,7 +51,7 @@ namespace DarkSoulsOBSOverlay.Services
         /// </returns>
         private static bool CanDirectlyCompare(Type type)
         {
-            return typeof(IComparable).IsAssignableFrom(type) || type.IsPrimitive || type.IsValueType;
+            return typeof(IComparable).IsAssignableFrom(type) || type.IsPrimitive || (type.IsValueType && !(type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(List<>))));
         }
 
         /// <summary>

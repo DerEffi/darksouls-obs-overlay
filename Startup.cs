@@ -1,6 +1,7 @@
 using DarkSoulsOBSOverlay.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,23 +40,31 @@ namespace DarkSoulsOBSOverlay
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+#if DEBUG
+            app.UseCors(cors =>
+            {
+                cors.AllowAnyOrigin();
+            });
+#endif
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
             app.UseWebSockets();
 
+            app.UsePathBase(new PathString("/api"));
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
+            app.UsePathBase(new PathString("/"));
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "Frontend";
 
 #if DEBUG
-                spa.UseReactDevelopmentServer(npmScript: "start");
+                //spa.UseReactDevelopmentServer(npmScript: "start");
 #endif
             });
         }

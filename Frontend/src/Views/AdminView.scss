@@ -1,0 +1,17 @@
+#App {
+    padding-top: 80px;
+}
+
+#ShutdownButton {
+    position: fixed;
+    top: 30px;
+    right: 50px;
+}
+
+.loading {
+    text-align: center;
+
+    &-text {
+        padding-top: 15px;
+    }
+}

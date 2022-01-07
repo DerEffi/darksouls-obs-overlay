@@ -38,7 +38,7 @@ namespace DarkSoulsOBSOverlay.Controllers
             {
                 Environment.Exit(0);
             }));
-            return new OkObjectResult("Closing Application");
+            return new OkObjectResult(new { Message = "Closing Application" });
         }
     }
 }

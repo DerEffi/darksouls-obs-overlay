@@ -5,35 +5,47 @@ export default interface DarkSoulsData {
     Connected: boolean;
     Loaded: boolean;
     Version: string;
+    UpdatedEventFlags: number[];
+    Char: CharData;
+    
+    //EventFlags
+    Common: boolean[];
+    AnorLondo: boolean[];
+    Blighttown: boolean[];
+    Catacombs: boolean[];
+    ChasmOfTheAbyss: boolean[];
+    CrystalCave: boolean[];
+    DarkrootGarden: boolean[];
+    DemonRuins: boolean[];
+    Depths: boolean[];
+    FirelinkShrine: boolean[];
+    KilnOfTheFirstFlame: boolean[];
+    LostIzalith: boolean[];
+    NewLondoRuins: boolean[];
+    OolacileTownship: boolean[];
+    PaintedWorld: boolean[];
+    QueelagsDomain: boolean[];
+    RoyalWoods: boolean[];
+    SanctuaryGarden: boolean[];
+    SensFortress: boolean[];
+    TombOfGiants: boolean[];
+    UndeadAsylum: boolean[];
+    UndeadBurg: boolean[];
+    UndeadParish: boolean[];
+    ValleyOfDrakes: boolean[];
+}
+
+export interface CharData {
+    Area: string;
+    AreaId: number;
     CharacterName: string;
     CharacterClass: string;
     CharacterClassId: number;
-    Health: number;
-    HealthMax: number;
     LastBonfire: string;
     LastBonfireId: number;
-    Area: string;
-    AreaId: number;
+    Health: number;
+    HealthMax: number;
     Deaths: number;
     Clock: number;
-    UndeadAsylum: UndeadAsylumData | null;
-    FirelinkShrine: FirelinkShrineData | null;
-}
-
-export interface UndeadAsylumData {
-    PreOscarFog: boolean;
-    CellDoor: boolean;
-    F2WestDoor: boolean;
-    ShortcutDoor: boolean;
-    F2EastDoor: boolean;
-    BigPilgrimDoor: boolean;
-    OscarTrapSprung: boolean;
-    AsylumDeamon: boolean;
-}
-
-export interface FirelinkShrineData {
-    TalismanChest: boolean;
-    HomewardBoneChest: boolean;
-    CrackedRedEyeOrbChest: boolean;
-    LloydTalismanChest: boolean;
+    SaveSlot: number;
 }
