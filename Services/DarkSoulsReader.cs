@@ -71,7 +71,7 @@ namespace DarkSoulsOBSOverlay.Services
                         Clock = darkSouls.GetSeconds(),
                         SaveSlot = darkSouls.SaveSlot,
                 };
-                    Stats.Common = new() {
+                    Stats.Areas.Common = new() {
                         WeaponSmithbox = darkSouls.ReadEventFlag(CommonEvents.WeaponSmithbox),
                         ArmorSmithbox = darkSouls.ReadEventFlag(CommonEvents.ArmorSmithbox),
                         Repairbox = darkSouls.ReadEventFlag(CommonEvents.Repairbox),
@@ -108,29 +108,29 @@ namespace DarkSoulsOBSOverlay.Services
                     if(SavedStats.Char.LastBonfireId == -1 && Stats.Char.LastBonfireId != -1)
                     {
                         //Reload everything on new SaveGame Load
-                        Stats.AnorLondo = ReadAnorLondoData();
-                        Stats.Blighttown = ReadBlighttownData();
-                        Stats.Catacombs = ReadCatacombsData();
-                        Stats.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
-                        Stats.CrystalCave = ReadCrystalCaveData();
-                        Stats.DarkrootGarden = ReadDarkrootGardenData();
-                        Stats.DemonRuins = ReadDemonRuinsData();
-                        Stats.Depths = ReadDepthsData();
-                        Stats.FirelinkShrine = ReadFirelinkShrineData();
-                        Stats.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
-                        Stats.LostIzalith = ReadLostIzalithData();
-                        Stats.NewLondoRuins = ReadNewLondoRuinsData();
-                        Stats.OolacileTownship = ReadOolacileTownshipData();
-                        Stats.PaintedWorld = ReadPaintedWorldData();
-                        Stats.QueelagsDomain = ReadQueelagsDomainData();
-                        Stats.RoyalWoods = ReadRoyalWoodsData();
-                        Stats.SanctuaryGarden = ReadSanctuaryGardenData();
-                        Stats.SensFortress = ReadSensFortressData();
-                        Stats.TombOfGiants = ReadTombOfGiantsData();
-                        Stats.UndeadAsylum = ReadUndeadAsylumData();
-                        Stats.UndeadBurg = ReadUndeadBurgData();
-                        Stats.UndeadParish = ReadUndeadParishData();
-                        Stats.ValleyOfDrakes = ReadValleyOfDrakesData();
+                        Stats.Areas.AnorLondo = ReadAnorLondoData();
+                        Stats.Areas.Blighttown = ReadBlighttownData();
+                        Stats.Areas.Catacombs = ReadCatacombsData();
+                        Stats.Areas.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
+                        Stats.Areas.CrystalCave = ReadCrystalCaveData();
+                        Stats.Areas.DarkrootGarden = ReadDarkrootGardenData();
+                        Stats.Areas.DemonRuins = ReadDemonRuinsData();
+                        Stats.Areas.Depths = ReadDepthsData();
+                        Stats.Areas.FirelinkShrine = ReadFirelinkShrineData();
+                        Stats.Areas.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
+                        Stats.Areas.LostIzalith = ReadLostIzalithData();
+                        Stats.Areas.NewLondoRuins = ReadNewLondoRuinsData();
+                        Stats.Areas.OolacileTownship = ReadOolacileTownshipData();
+                        Stats.Areas.PaintedWorld = ReadPaintedWorldData();
+                        Stats.Areas.QueelagsDomain = ReadQueelagsDomainData();
+                        Stats.Areas.RoyalWoods = ReadRoyalWoodsData();
+                        Stats.Areas.SanctuaryGarden = ReadSanctuaryGardenData();
+                        Stats.Areas.SensFortress = ReadSensFortressData();
+                        Stats.Areas.TombOfGiants = ReadTombOfGiantsData();
+                        Stats.Areas.UndeadAsylum = ReadUndeadAsylumData();
+                        Stats.Areas.UndeadBurg = ReadUndeadBurgData();
+                        Stats.Areas.UndeadParish = ReadUndeadParishData();
+                        Stats.Areas.ValleyOfDrakes = ReadValleyOfDrakesData();
                     } else {
                         //Reload only the Area where the char is
                         switch(Stats.Char.AreaId) {
@@ -138,90 +138,90 @@ namespace DarkSoulsOBSOverlay.Services
                             case 2002:
                             case 2003: //Chamber of the Princess
                             case 2004: //Darkmoon Tomb
-                                Stats.AnorLondo = ReadAnorLondoData();
+                                Stats.Areas.AnorLondo = ReadAnorLondoData();
                                 break;
                             case 1400:
-                                Stats.Blighttown = ReadBlighttownData();
+                                Stats.Areas.Blighttown = ReadBlighttownData();
                                 break;
                             case 1300:
                             case 2020:
-                                Stats.Catacombs = ReadCatacombsData();
+                                Stats.Areas.Catacombs = ReadCatacombsData();
                                 break;
                             case 1214:
                             case 2012:
-                                Stats.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
+                                Stats.Areas.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
                                 break;
                             case 1701:
                             case 2019:
-                                Stats.CrystalCave = ReadCrystalCaveData();
+                                Stats.Areas.CrystalCave = ReadCrystalCaveData();
                                 break;
                             case 1200:
-                                Stats.DarkrootGarden = ReadDarkrootGardenData();
+                                Stats.Areas.DarkrootGarden = ReadDarkrootGardenData();
                                 break;
                             case 1410:
-                                Stats.DemonRuins = ReadDemonRuinsData();
+                                Stats.Areas.DemonRuins = ReadDemonRuinsData();
                                 break;
                             case 1000:
                             case 2014:
-                                Stats.Depths = ReadDepthsData();
+                                Stats.Areas.Depths = ReadDepthsData();
                                 break;
                             case 1020:
                             case 2000:
-                                Stats.FirelinkShrine = ReadFirelinkShrineData();
+                                Stats.Areas.FirelinkShrine = ReadFirelinkShrineData();
                                 break;
                             case 1800:
                             case 1801:
-                                Stats.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
+                                Stats.Areas.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
                                 break;
                             case 1411:
-                                Stats.LostIzalith = ReadLostIzalithData();
+                                Stats.Areas.LostIzalith = ReadLostIzalithData();
                                 break;
                             case 1600:
                             case 1610: //Abyss
                             case 2005: //Abyss
-                                Stats.NewLondoRuins = ReadNewLondoRuinsData();
+                                Stats.Areas.NewLondoRuins = ReadNewLondoRuinsData();
                                 break;
                             case 1213:
                             case 2011:
                             case 2013: //Dungeon
-                                Stats.OolacileTownship = ReadOolacileTownshipData();
+                                Stats.Areas.OolacileTownship = ReadOolacileTownshipData();
                                 break;
                             case 1100:
                             case 2016:
-                                Stats.PaintedWorld = ReadPaintedWorldData();
+                                Stats.Areas.PaintedWorld = ReadPaintedWorldData();
                                 break;
                             case 1401:
                             case 2006: //Daughter of Chaos
-                                Stats.QueelagsDomain = ReadQueelagsDomainData();
+                                Stats.Areas.QueelagsDomain = ReadQueelagsDomainData();
                                 break;
                             case 1212:
-                                Stats.RoyalWoods = ReadRoyalWoodsData();
+                                Stats.Areas.RoyalWoods = ReadRoyalWoodsData();
                                 break;
                             case 1210:
                             case 2009:
-                                Stats.SanctuaryGarden = ReadSanctuaryGardenData();
+                                Stats.Areas.SanctuaryGarden = ReadSanctuaryGardenData();
                                 break;
                             case 1500:
-                                Stats.SensFortress = ReadSensFortressData();
+                                Stats.Areas.SensFortress = ReadSensFortressData();
                                 break;
                             case 1310:
                             case 2007: //Gravelord Altar
                             case 2017:
-                                Stats.TombOfGiants = ReadTombOfGiantsData();
+                                Stats.Areas.TombOfGiants = ReadTombOfGiantsData();
                                 break;
                             case 1810:
-                                Stats.UndeadAsylum = ReadUndeadAsylumData();
+                                Stats.Areas.UndeadAsylum = ReadUndeadAsylumData();
                                 break;
                             case 1010:
-                                Stats.UndeadBurg = ReadUndeadBurgData();
+                                Stats.Areas.UndeadBurg = ReadUndeadBurgData();
                                 break;
                             case 1011:
                             case 2001: //Sunlight Altar
                             case 2015:
-                                Stats.UndeadParish = ReadUndeadParishData();
+                                Stats.Areas.UndeadParish = ReadUndeadParishData();
                                 break;
                             case 1602:
-                                Stats.ValleyOfDrakes = ReadValleyOfDrakesData();
+                                Stats.Areas.ValleyOfDrakes = ReadValleyOfDrakesData();
                                 break;
                         }
                     }
@@ -247,7 +247,7 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 try
                 {
-                    if (SavedStats.Loaded && (SavedStats.Char.Clock < ResettedStats.Clock || SavedStats.Char.SaveSlot != ResettedStats.SaveSlot || SavedStats.Char.CharacterName != ResettedStats.CharacterName))
+                    if (SavedStats.Loaded && (ResettedStats == null || SavedStats.Char.Clock < ResettedStats.Clock || SavedStats.Char.SaveSlot != ResettedStats.SaveSlot || SavedStats.Char.CharacterName != ResettedStats.CharacterName))
                     {
                         ResettedStats = FileService.LoadResettedData(SavedStats);
                     }

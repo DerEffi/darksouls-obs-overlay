@@ -9,30 +9,32 @@ export default interface DarkSoulsData {
     Char: CharData;
     
     //EventFlags
-    Common: boolean[];
-    AnorLondo: boolean[];
-    Blighttown: boolean[];
-    Catacombs: boolean[];
-    ChasmOfTheAbyss: boolean[];
-    CrystalCave: boolean[];
-    DarkrootGarden: boolean[];
-    DemonRuins: boolean[];
-    Depths: boolean[];
-    FirelinkShrine: boolean[];
-    KilnOfTheFirstFlame: boolean[];
-    LostIzalith: boolean[];
-    NewLondoRuins: boolean[];
-    OolacileTownship: boolean[];
-    PaintedWorld: boolean[];
-    QueelagsDomain: boolean[];
-    RoyalWoods: boolean[];
-    SanctuaryGarden: boolean[];
-    SensFortress: boolean[];
-    TombOfGiants: boolean[];
-    UndeadAsylum: boolean[];
-    UndeadBurg: boolean[];
-    UndeadParish: boolean[];
-    ValleyOfDrakes: boolean[];
+    Areas: {
+        Common: object;
+        AnorLondo: object;
+        Blighttown: object;
+        Catacombs: object;
+        ChasmOfTheAbyss: object;
+        CrystalCave: object;
+        DarkrootGarden: object;
+        DemonRuins: object;
+        Depths: object;
+        FirelinkShrine: object;
+        KilnOfTheFirstFlame: object;
+        LostIzalith: object;
+        NewLondoRuins: object;
+        OolacileTownship: object;
+        PaintedWorld: object;
+        QueelagsDomain: object;
+        RoyalWoods: object;
+        SanctuaryGarden: object;
+        SensFortress: object;
+        TombOfGiants: object;
+        UndeadAsylum: object;
+        UndeadBurg: object;
+        UndeadParish: object;
+        ValleyOfDrakes: object;
+    }
 }
 
 export interface CharData {

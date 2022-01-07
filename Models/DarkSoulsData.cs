@@ -10,8 +10,26 @@ namespace DarkSoulsOBSOverlay.Models
         public string Version { get; set; } = null;
         public List<KeyValuePair<int, int>> UpdatedEventFlags { get; set; } = new();
         public CharData Char { get; set; } = new();
-        
-        //EventFlags
+        public AreaData Areas { get; set; } = new();
+    }
+
+    public class CharData
+    {
+        public string Area { get; set; } = null;
+        public int AreaId { get; set; } = 0;
+        public string CharacterName { get; set; } = null;
+        public string CharacterClass { get; set; } = null;
+        public int CharacterClassId { get; set; } = 0;
+        public string LastBonfire { get; set; } = null;
+        public int LastBonfireId { get; set; } = 0;
+        public int Health { get; set; } = 0;
+        public int HealthMax { get; set; } = 0;
+        public int Deaths { get; set; } = 0;
+        public double Clock { get; set; } = 0;
+        public int SaveSlot { get; set; } = 0;
+    }
+
+    public class AreaData {
         public CommonData Common { get; set; } = new();
         public AnorLondoData AnorLondo { get; set; } = new();
         public BlighttownData Blighttown { get; set; } = new();
@@ -36,22 +54,6 @@ namespace DarkSoulsOBSOverlay.Models
         public UndeadBurgData UndeadBurg { get; set; } = new();
         public UndeadParishData UndeadParish { get; set; } = new();
         public ValleyOfDrakesData ValleyOfDrakes { get; set; } = new();
-    }
-
-    public class CharData
-    {
-        public string Area { get; set; } = null;
-        public int AreaId { get; set; } = 0;
-        public string CharacterName { get; set; } = null;
-        public string CharacterClass { get; set; } = null;
-        public int CharacterClassId { get; set; } = 0;
-        public string LastBonfire { get; set; } = null;
-        public int LastBonfireId { get; set; } = 0;
-        public int Health { get; set; } = 0;
-        public int HealthMax { get; set; } = 0;
-        public int Deaths { get; set; } = 0;
-        public double Clock { get; set; } = 0;
-        public int SaveSlot { get; set; } = 0;
     }
 
     public class CommonData

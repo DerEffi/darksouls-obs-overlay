@@ -1,3 +1,8 @@
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 #App {
     padding-top: 80px;
 }
@@ -13,5 +18,59 @@
 
     &-text {
         padding-top: 15px;
+    }
+}
+
+.content {
+    max-width: 600px;
+    width: 100%;
+    min-width: 250px;
+    margin: 20px auto;
+}
+
+.event-box {
+    width: 100%;
+    height: 26px;
+    padding-top: 4px;
+    margin: 10px;
+    display: flex;
+
+    & p {
+        padding-left: 10px;
+    }
+}
+
+#settings, #events {
+    margin-bottom: 60px;
+
+    &-confirm {
+        margin: 15px 0;
+        text-align: center;
+    }
+}
+
+h5 {
+    margin: 20px 0 10px 0 !important;
+}
+
+.warning {
+    background-color: #333;
+    height: 300px;
+    width: 500px;
+    color: #efefef;
+    border-radius: 3px;
+    top: 30% !important;
+    left: 50% !important;
+    margin-left: -280px !important;
+    padding: 20px 30px;
+
+    &-headline {
+        margin-bottom: 20px;
+    }
+
+    &-button {
+        bottom: 30px;
+        position: absolute;
+        left: 240px;
     }
 }

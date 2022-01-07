@@ -1,4 +1,6 @@
-﻿namespace DarkSoulsOBSOverlay.Models
+﻿using Newtonsoft.Json;
+
+namespace DarkSoulsOBSOverlay.Models
 {
     public class Settings
     {

@@ -12,6 +12,7 @@ ReactDOM.render(
     autoHideDuration={3000}
     dense
     hideIconVariant
+    maxSnack={20}
   >
     <BrowserRouter>
       <Routes>

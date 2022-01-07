@@ -8,9 +8,9 @@ using System.Reflection;
 
 namespace DarkSoulsOBSOverlay.Services
 {
-    public class FileService
+    public static class FileService
     {
-        private static readonly string Folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DerEffi/" + Assembly.GetExecutingAssembly().GetName().Name + "/";
+        private static readonly string Folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\DerEffi\\" + Assembly.GetExecutingAssembly().GetName().Name + "\\";
         private static readonly string LogFile = Folder + "Logs.csv";
         private static readonly string SettingsFile = Folder + "Settings.json";
         private static readonly string SaveDataFile = Folder + "SaveData.json";
@@ -35,6 +35,10 @@ namespace DarkSoulsOBSOverlay.Services
         {
             try
             {
+                if (!Directory.Exists(Folder))
+                {
+                    Directory.CreateDirectory(Folder);
+                }
                 File.WriteAllText(SettingsFile, JsonConvert.SerializeObject(settings));
             } catch {}
         }
@@ -45,6 +49,10 @@ namespace DarkSoulsOBSOverlay.Services
             {
                 if(!File.Exists(LogFile))
                 {
+                    if(!Directory.Exists(Folder))
+                    {
+                        Directory.CreateDirectory(Folder);
+                    }
                     File.WriteAllText(LogFile, "Clock;State;Flag;Value");
                 }
 
@@ -100,6 +108,11 @@ namespace DarkSoulsOBSOverlay.Services
             if(!found)
             {
                 saveGames.Add(data);
+            }
+
+            if (!Directory.Exists(Folder))
+            {
+                Directory.CreateDirectory(Folder);
             }
 
             File.WriteAllText(SaveDataFile, JsonConvert.SerializeObject(saveGames));

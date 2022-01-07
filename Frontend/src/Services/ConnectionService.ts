@@ -1,5 +1,6 @@
 import { strings } from "../Lang/DarkSoulsStrings";
 import DarkSoulsData from "../Models/DarkSoulsData";
+import Settings from "../Models/Settings";
 
 export default class ConnectionService {
 
@@ -8,6 +9,7 @@ export default class ConnectionService {
     private readonly host: string = "localhost:80";
     private readonly subscribeEndpoint: string = `ws://${this.host}/status/subscribe`;
     private readonly shutdownEndpoint: string = `http://${this.host}/close`;
+    private readonly settingsEndpoint: string = `http://${this.host}/settings`;
     
     private timer: NodeJS.Timer;
     private connection: WebSocket | null = null;
@@ -18,7 +20,8 @@ export default class ConnectionService {
     public onShutdown = () => {};
 
     public constructor() {
-        this.timer = setInterval(() => this.connect(), 10000);
+        this.connect();
+        this.timer = setInterval(() => this.connect(), 5000);
     }
 
     private connect() {
@@ -32,7 +35,6 @@ export default class ConnectionService {
             }
 
             connection.onclose = () => {
-                //console.log("Connection closed");
                 this.onChange(false);
                 this.connection = null;
                 clearInterval(this.timer);
@@ -46,11 +48,6 @@ export default class ConnectionService {
                 } catch {
                     this.onError(strings.Errors.NoJson);
                 }
-            }
-
-            connection.onerror = err => {
-                //console.error(err);
-                //this.onError(strings.Errors.ConnectionError);
             }
         }
     }
@@ -68,12 +65,38 @@ export default class ConnectionService {
             if(json.message != null) {
                 this.onShutdown();
             } else {
-                throw "Message not set in shutdown response";
+                throw new Error("Message not set in shutdown response");
             }
         })
         .catch((err) => {
             console.error(err);
-            this.onError(strings.Errors.ShutdownError);
+            this.onError(strings.Errors.Shutdown);
+        });
+    }
+
+    public updateSettings(settings: Settings): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            fetch(this.settingsEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(settings)
+            })
+            .then((resp) => {
+                if(resp.ok) {
+                    resolve();
+                }
+                else {
+                    throw new Error();
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+                this.onError(strings.Errors.UpdateSettings);
+                reject();
+            });
         });
     }
 }

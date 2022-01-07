@@ -9,11 +9,27 @@ export interface IDarkSoulsStrings {
         Apply: string;
         ConnectingService: string;
         ConnectingGame: string;
+        LoadSaveGame: string;
+        Settings: string;
+        Events: string;
+        UpdateInterval: string;
+        CompareEventFlags: string;
+        Ok: string;
+        EventFlagWarning: string;
+        WarningHeadline: string;
+        SettingsUpdated: string;
     },
     Errors: {
         NoJson: string;
-        ConnectionError: string;
-        ShutdownError: string;
+        Connection: string;
+        Shutdown: string;
+        UpdateSettings: string;
+    },
+    Areas: {
+        AnorLondo: {
+            Name: string;
+            MainHallDoor: string;
+        };
     }
 }
 

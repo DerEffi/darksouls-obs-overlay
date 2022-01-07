@@ -44,6 +44,8 @@ namespace DarkSoulsOBSOverlay
             app.UseCors(cors =>
             {
                 cors.AllowAnyOrigin();
+                cors.AllowAnyMethod();
+                cors.AllowAnyHeader();
             });
 #endif
             app.UseStaticFiles();
@@ -51,7 +53,6 @@ namespace DarkSoulsOBSOverlay
 
             app.UseWebSockets();
 
-            app.UsePathBase(new PathString("/api"));
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
