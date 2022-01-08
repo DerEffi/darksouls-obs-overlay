@@ -19,13 +19,12 @@ namespace DarkSoulsOBSOverlay.Services
 
             if (objectA == null || objectB == null) return false;
 
-            Type type = objectA.GetType();
-            if(objectA.GetType().Namespace == "System.Collections.Generic")
+            if(typeof(T) == typeof(List<KeyValuePair<int, int>>))
             {
-                return objectA.Equals(objectB);
+                return ((dynamic)objectA).SequenceEqual((dynamic)objectB) ;
             }
 
-            return type.GetProperties().ToList().All(p =>
+            return typeof(T).GetProperties().ToList().All(p =>
             {
                 if(CanDirectlyCompare(p.PropertyType))
                 {

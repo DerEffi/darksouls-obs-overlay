@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class PaintedWorldEvents
+    public class PaintedWorldEvents<T>
     {
-        public const int Priscilla = 4; //defeated
+        public T Priscilla; //defeated
     }
 }

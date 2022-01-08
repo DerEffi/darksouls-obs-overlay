@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class SanctuaryGardenEvents
+    public class SanctuaryGardenEvents<T>
     {
-        public const int SanctuaryGuardian = 11210000; //defeated
+        public T SanctuaryGuardian; //defeated
     }
 }

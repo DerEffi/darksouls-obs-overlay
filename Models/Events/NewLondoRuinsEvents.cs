@@ -1,13 +1,13 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class NewLondoRuinsEvents
+    public class NewLondoRuinsEvents<T>
     {
-        public const int Drained = 11600100; //drained
-        public const int DoorToTheSeal = 11600110; //opened
-        public const int ValleyOfDrakesDoor = 11600120; //opened
-        public const int ShortcutLadder = 11600160; //operable
-        public const int FirelinkElevator = 11600201; //operable
-        public const int EstocCorpse = 11600650; //collapsed
-        public const int FourKings = 13; //defeated
+        public T Drained; //drained
+        public T DoorToTheSeal; //opened
+        public T ValleyOfDrakesDoor; //opened
+        public T ShortcutLadder; //operable
+        public T FirelinkElevator; //operable
+        public T EstocCorpse; //collapsed
+        public T FourKings; //defeated
     }
 }

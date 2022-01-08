@@ -1,6 +1,6 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class AshLakeEvents
+    public class AshLakeEvents<T>
     {
     }
 }

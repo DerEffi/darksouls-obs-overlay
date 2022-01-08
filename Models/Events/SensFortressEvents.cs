@@ -1,9 +1,9 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class SensFortressEvents
+    public class SensFortressEvents<T>
     {
-        public const int CageElevator = 11500101; //operatable
-        public const int MainGate = 11500200; //open
-        public const int IronGolem = 11; //defeated
+        public T CageElevator; //operatable
+        public T MainGate; //open
+        public T IronGolem; //defeated
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class ChasmOfTheAbyssEvents
+    public class ChasmOfTheAbyssEvents<T>
     {
-        public const int Manus = 11210002; //defeated
+        public T Manus; //defeated
     }
 }

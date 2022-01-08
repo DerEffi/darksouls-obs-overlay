@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class BlighttownEvents
+    public class BlighttownEvents<T>
     {
-        public const int ChaosWitchQueelag = 9; //defeated
+        public T ChaosWitchQueelag; //defeated
     }
 }

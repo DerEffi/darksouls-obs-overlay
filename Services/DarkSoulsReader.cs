@@ -1,11 +1,13 @@
 ﻿using DarkSoulsOBSOverlay.Models;
 using DarkSoulsOBSOverlay.Models.Events;
+using DarkSoulsOBSOverlay.Models.Mappings;
 using DarkSoulsOBSOverlay.Services.AOB;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Timers;
 
 namespace DarkSoulsOBSOverlay.Services
@@ -18,7 +20,7 @@ namespace DarkSoulsOBSOverlay.Services
         private static Settings _settings = new();
         public readonly static Timer Timer = new()
         {
-            Interval = _settings.UpdateInterval * 1000,
+            Interval = 1000,
             AutoReset = true,
         };
 
@@ -30,6 +32,7 @@ namespace DarkSoulsOBSOverlay.Services
         public static void SetSettings(Settings settings)
         {
             _settings = settings;
+            Timer.Interval = settings.UpdateInterval * 1000;
             FileService.SaveSettings(settings);
         }
 
@@ -70,67 +73,68 @@ namespace DarkSoulsOBSOverlay.Services
                         Deaths = darkSouls.Deaths,
                         Clock = darkSouls.GetSeconds(),
                         SaveSlot = darkSouls.SaveSlot,
-                };
-                    Stats.Areas.Common = new() {
-                        WeaponSmithbox = darkSouls.ReadEventFlag(CommonEvents.WeaponSmithbox),
-                        ArmorSmithbox = darkSouls.ReadEventFlag(CommonEvents.ArmorSmithbox),
-                        Repairbox = darkSouls.ReadEventFlag(CommonEvents.Repairbox),
-                        BottomlessBox = darkSouls.ReadEventFlag(CommonEvents.BottomlessBox),
-                        EstusFlask = darkSouls.ReadEventFlag(CommonEvents.EstusFlask),
-                        FirstSpell = darkSouls.ReadEventFlag(CommonEvents.FirstSpell),
-                        AbleToPayAbsolution = darkSouls.ReadEventFlag(CommonEvents.AbleToPayAbsolution),
-                        TitaniteShard = darkSouls.ReadEventFlag(CommonEvents.TitaniteShard),
-                        LargeTitaniteShard = darkSouls.ReadEventFlag(CommonEvents.LargeTitaniteShard),
-                        GreenTitaniteShard = darkSouls.ReadEventFlag(CommonEvents.GreenTitaniteShard),
-                        TitaniteChunk = darkSouls.ReadEventFlag(CommonEvents.TitaniteChunk),
-                        BlueTitaniteChunk = darkSouls.ReadEventFlag(CommonEvents.BlueTitaniteChunk),
-                        WhiteTitaniteChunk = darkSouls.ReadEventFlag(CommonEvents.WhiteTitaniteChunk),
-                        RedTitaniteChunk = darkSouls.ReadEventFlag(CommonEvents.RedTitaniteChunk),
-                        TitaniteSlab = darkSouls.ReadEventFlag(CommonEvents.TitaniteSlab),
-                        BlueTitaniteSlab = darkSouls.ReadEventFlag(CommonEvents.BlueTitaniteSlab),
-                        WhiteTitaniteSlab = darkSouls.ReadEventFlag(CommonEvents.WhiteTitaniteSlab),
-                        RedTitaniteSlab = darkSouls.ReadEventFlag(CommonEvents.RedTitaniteSlab),
-                        DragonScale = darkSouls.ReadEventFlag(CommonEvents.DragonScale),
-                        DemonTitanite = darkSouls.ReadEventFlag(CommonEvents.DemonTitanite),
-                        TwinklingTitanite = darkSouls.ReadEventFlag(CommonEvents.TwinklingTitanite),
+                    };
+                    Stats.Events.Common = new()
+                    {
+                        WeaponSmithbox = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.WeaponSmithbox),
+                        ArmorSmithbox = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.ArmorSmithbox),
+                        Repairbox = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.Repairbox),
+                        BottomlessBox = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.BottomlessBox),
+                        EstusFlask = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.EstusFlask),
+                        FirstSpell = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.FirstSpell),
+                        AbleToPayAbsolution = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.AbleToPayAbsolution),
+                        TitaniteShard = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.TitaniteShard),
+                        LargeTitaniteShard = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.LargeTitaniteShard),
+                        GreenTitaniteShard = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.GreenTitaniteShard),
+                        TitaniteChunk = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.TitaniteChunk),
+                        BlueTitaniteChunk = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.BlueTitaniteChunk),
+                        WhiteTitaniteChunk = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.WhiteTitaniteChunk),
+                        RedTitaniteChunk = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.RedTitaniteChunk),
+                        TitaniteSlab = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.TitaniteSlab),
+                        BlueTitaniteSlab = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.BlueTitaniteSlab),
+                        WhiteTitaniteSlab = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.WhiteTitaniteSlab),
+                        RedTitaniteSlab = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.RedTitaniteSlab),
+                        DragonScale = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.DragonScale),
+                        DemonTitanite = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.DemonTitanite),
+                        TwinklingTitanite = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.TwinklingTitanite),
 
-                        NoCovenant = darkSouls.ReadEventFlag(CommonEvents.NoCovenant),
-                        WayOfWhite = darkSouls.ReadEventFlag(CommonEvents.WayOfWhite),
-                        WarriorOfSunlight = darkSouls.ReadEventFlag(CommonEvents.WarriorOfSunlight),
-                        Darkwraith = darkSouls.ReadEventFlag(CommonEvents.Darkwraith),
-                        PathOfTheDragon = darkSouls.ReadEventFlag(CommonEvents.PathOfTheDragon),
-                        GravelordServant = darkSouls.ReadEventFlag(CommonEvents.GravelordServant),
-                        ForestHunter = darkSouls.ReadEventFlag(CommonEvents.ForestHunter),
-                        Darkmoon = darkSouls.ReadEventFlag(CommonEvents.Darkmoon),
-                        ChaosServant = darkSouls.ReadEventFlag(CommonEvents.ChaosServant),
+                        NoCovenant = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.NoCovenant),
+                        WayOfWhite = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.WayOfWhite),
+                        WarriorOfSunlight = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.WarriorOfSunlight),
+                        Darkwraith = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.Darkwraith),
+                        PathOfTheDragon = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.PathOfTheDragon),
+                        GravelordServant = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.GravelordServant),
+                        ForestHunter = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.ForestHunter),
+                        Darkmoon = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.Darkmoon),
+                        ChaosServant = darkSouls.ReadEventFlag(Mappings.EventFlags.Common.ChaosServant),
                     };
 
-                    if(SavedStats.Char.LastBonfireId == -1 && Stats.Char.LastBonfireId != -1)
+                    if (SavedStats.Char.LastBonfireId == -1 && Stats.Char.LastBonfireId != -1)
                     {
                         //Reload everything on new SaveGame Load
-                        Stats.Areas.AnorLondo = ReadAnorLondoData();
-                        Stats.Areas.Blighttown = ReadBlighttownData();
-                        Stats.Areas.Catacombs = ReadCatacombsData();
-                        Stats.Areas.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
-                        Stats.Areas.CrystalCave = ReadCrystalCaveData();
-                        Stats.Areas.DarkrootGarden = ReadDarkrootGardenData();
-                        Stats.Areas.DemonRuins = ReadDemonRuinsData();
-                        Stats.Areas.Depths = ReadDepthsData();
-                        Stats.Areas.FirelinkShrine = ReadFirelinkShrineData();
-                        Stats.Areas.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
-                        Stats.Areas.LostIzalith = ReadLostIzalithData();
-                        Stats.Areas.NewLondoRuins = ReadNewLondoRuinsData();
-                        Stats.Areas.OolacileTownship = ReadOolacileTownshipData();
-                        Stats.Areas.PaintedWorld = ReadPaintedWorldData();
-                        Stats.Areas.QueelagsDomain = ReadQueelagsDomainData();
-                        Stats.Areas.RoyalWoods = ReadRoyalWoodsData();
-                        Stats.Areas.SanctuaryGarden = ReadSanctuaryGardenData();
-                        Stats.Areas.SensFortress = ReadSensFortressData();
-                        Stats.Areas.TombOfGiants = ReadTombOfGiantsData();
-                        Stats.Areas.UndeadAsylum = ReadUndeadAsylumData();
-                        Stats.Areas.UndeadBurg = ReadUndeadBurgData();
-                        Stats.Areas.UndeadParish = ReadUndeadParishData();
-                        Stats.Areas.ValleyOfDrakes = ReadValleyOfDrakesData();
+                        Stats.Events.AnorLondo = ReadAnorLondoData();
+                        Stats.Events.Blighttown = ReadBlighttownData();
+                        Stats.Events.Catacombs = ReadCatacombsData();
+                        Stats.Events.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
+                        Stats.Events.CrystalCave = ReadCrystalCaveData();
+                        Stats.Events.DarkrootGarden = ReadDarkrootGardenData();
+                        Stats.Events.DemonRuins = ReadDemonRuinsData();
+                        Stats.Events.Depths = ReadDepthsData();
+                        Stats.Events.FirelinkShrine = ReadFirelinkShrineData();
+                        Stats.Events.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
+                        Stats.Events.LostIzalith = ReadLostIzalithData();
+                        Stats.Events.NewLondoRuins = ReadNewLondoRuinsData();
+                        Stats.Events.OolacileTownship = ReadOolacileTownshipData();
+                        Stats.Events.PaintedWorld = ReadPaintedWorldData();
+                        Stats.Events.QueelagsDomain = ReadQueelagsDomainData();
+                        Stats.Events.RoyalWoods = ReadRoyalWoodsData();
+                        Stats.Events.SanctuaryGarden = ReadSanctuaryGardenData();
+                        Stats.Events.SensFortress = ReadSensFortressData();
+                        Stats.Events.TombOfGiants = ReadTombOfGiantsData();
+                        Stats.Events.UndeadAsylum = ReadUndeadAsylumData();
+                        Stats.Events.UndeadBurg = ReadUndeadBurgData();
+                        Stats.Events.UndeadParish = ReadUndeadParishData();
+                        Stats.Events.ValleyOfDrakes = ReadValleyOfDrakesData();
                     } else {
                         //Reload only the Area where the char is
                         switch(Stats.Char.AreaId) {
@@ -138,90 +142,90 @@ namespace DarkSoulsOBSOverlay.Services
                             case 2002:
                             case 2003: //Chamber of the Princess
                             case 2004: //Darkmoon Tomb
-                                Stats.Areas.AnorLondo = ReadAnorLondoData();
+                                Stats.Events.AnorLondo = ReadAnorLondoData();
                                 break;
                             case 1400:
-                                Stats.Areas.Blighttown = ReadBlighttownData();
+                                Stats.Events.Blighttown = ReadBlighttownData();
                                 break;
                             case 1300:
                             case 2020:
-                                Stats.Areas.Catacombs = ReadCatacombsData();
+                                Stats.Events.Catacombs = ReadCatacombsData();
                                 break;
                             case 1214:
                             case 2012:
-                                Stats.Areas.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
+                                Stats.Events.ChasmOfTheAbyss = ReadChasmOfTheAbyssData();
                                 break;
                             case 1701:
                             case 2019:
-                                Stats.Areas.CrystalCave = ReadCrystalCaveData();
+                                Stats.Events.CrystalCave = ReadCrystalCaveData();
                                 break;
                             case 1200:
-                                Stats.Areas.DarkrootGarden = ReadDarkrootGardenData();
+                                Stats.Events.DarkrootGarden = ReadDarkrootGardenData();
                                 break;
                             case 1410:
-                                Stats.Areas.DemonRuins = ReadDemonRuinsData();
+                                Stats.Events.DemonRuins = ReadDemonRuinsData();
                                 break;
                             case 1000:
                             case 2014:
-                                Stats.Areas.Depths = ReadDepthsData();
+                                Stats.Events.Depths = ReadDepthsData();
                                 break;
                             case 1020:
                             case 2000:
-                                Stats.Areas.FirelinkShrine = ReadFirelinkShrineData();
+                                Stats.Events.FirelinkShrine = ReadFirelinkShrineData();
                                 break;
                             case 1800:
                             case 1801:
-                                Stats.Areas.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
+                                Stats.Events.KilnOfTheFirstFlame = ReadKilnOfTheFirstFlameData();
                                 break;
                             case 1411:
-                                Stats.Areas.LostIzalith = ReadLostIzalithData();
+                                Stats.Events.LostIzalith = ReadLostIzalithData();
                                 break;
                             case 1600:
                             case 1610: //Abyss
                             case 2005: //Abyss
-                                Stats.Areas.NewLondoRuins = ReadNewLondoRuinsData();
+                                Stats.Events.NewLondoRuins = ReadNewLondoRuinsData();
                                 break;
                             case 1213:
                             case 2011:
                             case 2013: //Dungeon
-                                Stats.Areas.OolacileTownship = ReadOolacileTownshipData();
+                                Stats.Events.OolacileTownship = ReadOolacileTownshipData();
                                 break;
                             case 1100:
                             case 2016:
-                                Stats.Areas.PaintedWorld = ReadPaintedWorldData();
+                                Stats.Events.PaintedWorld = ReadPaintedWorldData();
                                 break;
                             case 1401:
                             case 2006: //Daughter of Chaos
-                                Stats.Areas.QueelagsDomain = ReadQueelagsDomainData();
+                                Stats.Events.QueelagsDomain = ReadQueelagsDomainData();
                                 break;
                             case 1212:
-                                Stats.Areas.RoyalWoods = ReadRoyalWoodsData();
+                                Stats.Events.RoyalWoods = ReadRoyalWoodsData();
                                 break;
                             case 1210:
                             case 2009:
-                                Stats.Areas.SanctuaryGarden = ReadSanctuaryGardenData();
+                                Stats.Events.SanctuaryGarden = ReadSanctuaryGardenData();
                                 break;
                             case 1500:
-                                Stats.Areas.SensFortress = ReadSensFortressData();
+                                Stats.Events.SensFortress = ReadSensFortressData();
                                 break;
                             case 1310:
                             case 2007: //Gravelord Altar
                             case 2017:
-                                Stats.Areas.TombOfGiants = ReadTombOfGiantsData();
+                                Stats.Events.TombOfGiants = ReadTombOfGiantsData();
                                 break;
                             case 1810:
-                                Stats.Areas.UndeadAsylum = ReadUndeadAsylumData();
+                                Stats.Events.UndeadAsylum = ReadUndeadAsylumData();
                                 break;
                             case 1010:
-                                Stats.Areas.UndeadBurg = ReadUndeadBurgData();
+                                Stats.Events.UndeadBurg = ReadUndeadBurgData();
                                 break;
                             case 1011:
                             case 2001: //Sunlight Altar
                             case 2015:
-                                Stats.Areas.UndeadParish = ReadUndeadParishData();
+                                Stats.Events.UndeadParish = ReadUndeadParishData();
                                 break;
                             case 1602:
-                                Stats.Areas.ValleyOfDrakes = ReadValleyOfDrakesData();
+                                Stats.Events.ValleyOfDrakes = ReadValleyOfDrakesData();
                                 break;
                         }
                     }
@@ -270,222 +274,222 @@ namespace DarkSoulsOBSOverlay.Services
 
 #region ReadEventFlags
 
-        public static AnorLondoData ReadAnorLondoData()
+        public static AnorLondoEvents<bool> ReadAnorLondoData()
         {
             return new() {
-                MainHallDoor = darkSouls.ReadEventFlag(AnorLondoEvents.MainHallDoor),
-                BlacksmithShortcutDoor = darkSouls.ReadEventFlag(AnorLondoEvents.BlacksmithShortcutDoor),
-                SolaireBonfireShortcutDoor = darkSouls.ReadEventFlag(AnorLondoEvents.SolaireBonfireShortcutDoor),
-                Dark = darkSouls.ReadEventFlag(AnorLondoEvents.Dark),
-                Gwyndolin = darkSouls.ReadEventFlag(AnorLondoEvents.Gwyndolin),
-                OrnsteinSmough = darkSouls.ReadEventFlag(AnorLondoEvents.OrnsteinSmough),
+                MainHallDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.AnorLondo.MainHallDoor),
+                BlacksmithShortcutDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.AnorLondo.BlacksmithShortcutDoor),
+                SolaireBonfireShortcutDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.AnorLondo.SolaireBonfireShortcutDoor),
+                Dark = darkSouls.ReadEventFlag(Mappings.EventFlags.AnorLondo.Dark),
+                Gwyndolin = darkSouls.ReadEventFlag(Mappings.EventFlags.AnorLondo.Gwyndolin),
+                OrnsteinSmough = darkSouls.ReadEventFlag(Mappings.EventFlags.AnorLondo.OrnsteinSmough),
             };
         }
 
-        public static BlighttownData ReadBlighttownData()
+        public static BlighttownEvents<bool> ReadBlighttownData()
         {
             return new() {
-                ChaosWitchQueelag = darkSouls.ReadEventFlag(BlighttownEvents.ChaosWitchQueelag),
+                ChaosWitchQueelag = darkSouls.ReadEventFlag(Mappings.EventFlags.Blighttown.ChaosWitchQueelag),
             };
         }
 
-        public static CatacombsData ReadCatacombsData()
+        public static CatacombsEvents<bool> ReadCatacombsData()
         {
             return new() {
-                Pinwheel = darkSouls.ReadEventFlag(CatacombsEvents.Pinwheel),
+                Pinwheel = darkSouls.ReadEventFlag(Mappings.EventFlags.Catacombs.Pinwheel),
             };
         }
 
-        public static ChasmOfTheAbyssData ReadChasmOfTheAbyssData()
+        public static ChasmOfTheAbyssEvents<bool> ReadChasmOfTheAbyssData()
         {
             return new() {
-                Manus = darkSouls.ReadEventFlag(ChasmOfTheAbyssEvents.Manus),
+                Manus = darkSouls.ReadEventFlag(Mappings.EventFlags.ChasmOfTheAbyss.Manus),
             };
         }
 
-        public static CrystalCaveData ReadCrystalCaveData()
+        public static CrystalCaveEvents<bool> ReadCrystalCaveData()
         {
             return new() {
-                Seath = darkSouls.ReadEventFlag(CrystalCaveEvents.Seath),
+                Seath = darkSouls.ReadEventFlag(Mappings.EventFlags.CrystalCave.Seath),
             };
         }
 
-        public static DarkrootGardenData ReadDarkrootGardenData()
+        public static DarkrootGardenEvents<bool> ReadDarkrootGardenData()
         {
             return new() {
-                MoonlightButterfly = darkSouls.ReadEventFlag(DarkrootGardenEvents.MoonlightButterfly),
-                CatCovenantRing = darkSouls.ReadEventFlag(DarkrootGardenEvents.CatCovenantRing),
-                Sif = darkSouls.ReadEventFlag(DarkrootGardenEvents.Sif),
+                MoonlightButterfly = darkSouls.ReadEventFlag(Mappings.EventFlags.DarkrootGarden.MoonlightButterfly),
+                CatCovenantRing = darkSouls.ReadEventFlag(Mappings.EventFlags.DarkrootGarden.CatCovenantRing),
+                Sif = darkSouls.ReadEventFlag(Mappings.EventFlags.DarkrootGarden.Sif),
             };
         }
 
-        public static DemonRuinsData ReadDemonRuinsData()
+        public static DemonRuinsEvents<bool> ReadDemonRuinsData()
         {
             return new() {
-                QueelagsDomainElevator = darkSouls.ReadEventFlag(DemonRuinsEvents.QueelagsDomainElevator),
-                DemonFiresage = darkSouls.ReadEventFlag(DemonRuinsEvents.DemonFiresage),
-                CeaselessDischarge = darkSouls.ReadEventFlag(DemonRuinsEvents.CeaselessDischarge),
-                CentipedeDemon = darkSouls.ReadEventFlag(DemonRuinsEvents.CentipedeDemon),
+                QueelagsDomainElevator = darkSouls.ReadEventFlag(Mappings.EventFlags.DemonRuins.QueelagsDomainElevator),
+                DemonFiresage = darkSouls.ReadEventFlag(Mappings.EventFlags.DemonRuins.DemonFiresage),
+                CeaselessDischarge = darkSouls.ReadEventFlag(Mappings.EventFlags.DemonRuins.CeaselessDischarge),
+                CentipedeDemon = darkSouls.ReadEventFlag(Mappings.EventFlags.DemonRuins.CentipedeDemon),
             };
         }
 
-        public static DepthsData ReadDepthsData()
+        public static DepthsEvents<bool> ReadDepthsData()
         {
             return new() {
-                BlighttownDoor = darkSouls.ReadEventFlag(DepthsEvents.BlighttownDoor),
-                GapingDragon = darkSouls.ReadEventFlag(DepthsEvents.GapingDragon),
+                BlighttownDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.Depths.BlighttownDoor),
+                GapingDragon = darkSouls.ReadEventFlag(Mappings.EventFlags.Depths.GapingDragon),
             };
         }
 
-        public static FirelinkShrineData ReadFirelinkShrineData()
+        public static FirelinkShrineEvents<bool> ReadFirelinkShrineData()
         {
             return new() {
-                TalismanChest = darkSouls.ReadEventFlag(FirelinkShrineEvents.TalismanChest),
-                HomewardBoneChest = darkSouls.ReadEventFlag(FirelinkShrineEvents.HomewardBoneChest),
-                CrackedRedEyeOrbChest = darkSouls.ReadEventFlag(FirelinkShrineEvents.CrackedRedEyeOrbChest),
-                LloydTalismanChest = darkSouls.ReadEventFlag(FirelinkShrineEvents.LloydTalismanChest),
-                CurledUpLikeABall = darkSouls.ReadEventFlag(FirelinkShrineEvents.CurledUpLikeABall),
-                PyromancyFlame = darkSouls.ReadEventFlag(FirelinkShrineEvents.PyromancyFlame),
-                PetrusCopperCoin = darkSouls.ReadEventFlag(FirelinkShrineEvents.PetrusCopperCoin),
+                TalismanChest = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.TalismanChest),
+                HomewardBoneChest = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.HomewardBoneChest),
+                CrackedRedEyeOrbChest = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.CrackedRedEyeOrbChest),
+                LloydTalismanChest = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.LloydTalismanChest),
+                CurledUpLikeABall = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.CurledUpLikeABall),
+                PyromancyFlame = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.PyromancyFlame),
+                PetrusCopperCoin = darkSouls.ReadEventFlag(Mappings.EventFlags.FirelinkShrine.PetrusCopperCoin),
             };
         }
 
-        public static KilnOfTheFirstFlameData ReadKilnOfTheFirstFlameData()
+        public static KilnOfTheFirstFlameEvents<bool> ReadKilnOfTheFirstFlameData()
         {
             return new() {
-                Gwyn = darkSouls.ReadEventFlag(KilnOfTheFirstFlameEvents.Gwyn),
+                Gwyn = darkSouls.ReadEventFlag(Mappings.EventFlags.KilnOfTheFirstFlame.Gwyn),
             };
         }
 
-        public static LostIzalithData ReadLostIzalithData()
+        public static LostIzalithEvents<bool> ReadLostIzalithData()
         {
             return new() {
-                BedOfChaos = darkSouls.ReadEventFlag(LostIzalithEvents.BedOfChaos),
+                BedOfChaos = darkSouls.ReadEventFlag(Mappings.EventFlags.LostIzalith.BedOfChaos),
             };
         }
 
-        public static NewLondoRuinsData ReadNewLondoRuinsData()
+        public static NewLondoRuinsEvents<bool> ReadNewLondoRuinsData()
         {
             return new() {
-                Drained = darkSouls.ReadEventFlag(NewLondoRuinsEvents.Drained),
-                DoorToTheSeal = darkSouls.ReadEventFlag(NewLondoRuinsEvents.DoorToTheSeal),
-                ValleyOfDrakesDoor = darkSouls.ReadEventFlag(NewLondoRuinsEvents.ValleyOfDrakesDoor),
-                ShortcutLadder = darkSouls.ReadEventFlag(NewLondoRuinsEvents.ShortcutLadder),
-                FirelinkElevator = darkSouls.ReadEventFlag(NewLondoRuinsEvents.FirelinkElevator),
-                EstocCorpse = darkSouls.ReadEventFlag(NewLondoRuinsEvents.EstocCorpse),
-                FourKings = darkSouls.ReadEventFlag(NewLondoRuinsEvents.FourKings),
+                Drained = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.Drained),
+                DoorToTheSeal = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.DoorToTheSeal),
+                ValleyOfDrakesDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.ValleyOfDrakesDoor),
+                ShortcutLadder = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.ShortcutLadder),
+                FirelinkElevator = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.FirelinkElevator),
+                EstocCorpse = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.EstocCorpse),
+                FourKings = darkSouls.ReadEventFlag(Mappings.EventFlags.NewLondoRuins.FourKings),
             };
         }
 
-        public static OolacileTownshipData ReadOolacileTownshipData()
+        public static OolacileTownshipEvents<bool> ReadOolacileTownshipData()
         {
             return new() {
-                CrestKeyDoor = darkSouls.ReadEventFlag(OolacileTownshipEvents.CrestKeyDoor),
+                CrestKeyDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.OolacileTownship.CrestKeyDoor),
             };
         }
 
-        public static PaintedWorldData ReadPaintedWorldData()
+        public static PaintedWorldEvents<bool> ReadPaintedWorldData()
         {
             return new() {
-                Priscilla = darkSouls.ReadEventFlag(PaintedWorldEvents.Priscilla),
+                Priscilla = darkSouls.ReadEventFlag(Mappings.EventFlags.PaintedWorld.Priscilla),
             };
         }
 
-        public static QueelagsDomainData ReadQueelagsDomainData()
+        public static QueelagsDomainEvents<bool> ReadQueelagsDomainData()
         {
             return new() {
-                BellOfAwakening = darkSouls.ReadEventFlag(QueelagsDomainEvents.BellOfAwakening),
+                BellOfAwakening = darkSouls.ReadEventFlag(Mappings.EventFlags.QueelagsDomain.BellOfAwakening),
             };
         }
 
-        public static RoyalWoodsData ReadRoyalWoodsData()
+        public static RoyalWoodsEvents<bool> ReadRoyalWoodsData()
         {
             return new() {
-                Kalameet = darkSouls.ReadEventFlag(RoyalWoodsEvents.Kalameet),
-                Artorias = darkSouls.ReadEventFlag(RoyalWoodsEvents.Artorias),
+                Kalameet = darkSouls.ReadEventFlag(Mappings.EventFlags.RoyalWoods.Kalameet),
+                Artorias = darkSouls.ReadEventFlag(Mappings.EventFlags.RoyalWoods.Artorias),
             };
         }
 
-        public static SanctuaryGardenData ReadSanctuaryGardenData()
+        public static SanctuaryGardenEvents<bool> ReadSanctuaryGardenData()
         {
             return new() {
-                SanctuaryGuardian = darkSouls.ReadEventFlag(SanctuaryGardenEvents.SanctuaryGuardian),
+                SanctuaryGuardian = darkSouls.ReadEventFlag(Mappings.EventFlags.SanctuaryGarden.SanctuaryGuardian),
             };
         }
 
-        public static SensFortressData ReadSensFortressData()
+        public static SensFortressEvents<bool> ReadSensFortressData()
         {
             return new() {
-                CageElevator = darkSouls.ReadEventFlag(SensFortressEvents.CageElevator),
-                MainGate = darkSouls.ReadEventFlag(SensFortressEvents.MainGate),
-                IronGolem = darkSouls.ReadEventFlag(SensFortressEvents.IronGolem),
+                CageElevator = darkSouls.ReadEventFlag(Mappings.EventFlags.SensFortress.CageElevator),
+                MainGate = darkSouls.ReadEventFlag(Mappings.EventFlags.SensFortress.MainGate),
+                IronGolem = darkSouls.ReadEventFlag(Mappings.EventFlags.SensFortress.IronGolem),
             };
         }
 
-        public static TombOfGiantsData ReadTombOfGiantsData()
+        public static TombOfGiantsEvents<bool> ReadTombOfGiantsData()
         {
             return new() {
-                Nito = darkSouls.ReadEventFlag(TombOfGiantsEvents.Nito),
+                Nito = darkSouls.ReadEventFlag(Mappings.EventFlags.TombOfGiants.Nito),
             };
         }
 
-        public static UndeadAsylumData ReadUndeadAsylumData()
+        public static UndeadAsylumEvents<bool> ReadUndeadAsylumData()
         {
             return new() {
-                AsylumDeamon = darkSouls.ReadEventFlag(UndeadAsylumEvents.AsylumDeamon),
-                PreOscarFog = darkSouls.ReadEventFlag(UndeadAsylumEvents.PreOscarFog),
-                CellDoor = darkSouls.ReadEventFlag(UndeadAsylumEvents.CellDoor),
-                F2WestDoor = darkSouls.ReadEventFlag(UndeadAsylumEvents.F2WestDoor),
-                ShortcutDoor = darkSouls.ReadEventFlag(UndeadAsylumEvents.ShortcutDoor),
-                F2EastDoor = darkSouls.ReadEventFlag(UndeadAsylumEvents.F2EastDoor),
-                BigPilgrimDoor = darkSouls.ReadEventFlag(UndeadAsylumEvents.BigPilgrimDoor),
-                OscarTrap = darkSouls.ReadEventFlag(UndeadAsylumEvents.OscarTrap),
-                OscarGiftEstus = darkSouls.ReadEventFlag(UndeadAsylumEvents.OscarGiftEstus),
-                OscarGiftF2EastKey = darkSouls.ReadEventFlag(UndeadAsylumEvents.OscarGiftF2EastKey),
-                BossDoor = darkSouls.ReadEventFlag(UndeadAsylumEvents.BossDoor),
+                AsylumDeamon = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.AsylumDeamon),
+                PreOscarFog = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.PreOscarFog),
+                CellDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.CellDoor),
+                F2WestDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.F2WestDoor),
+                ShortcutDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.ShortcutDoor),
+                F2EastDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.F2EastDoor),
+                BigPilgrimDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.BigPilgrimDoor),
+                OscarTrap = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.OscarTrap),
+                OscarGiftEstus = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.OscarGiftEstus),
+                OscarGiftF2EastKey = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.OscarGiftF2EastKey),
+                BossDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadAsylum.BossDoor),
             };
         }
 
-        public static UndeadBurgData ReadUndeadBurgData()
+        public static UndeadBurgEvents<bool> ReadUndeadBurgData()
         {
             return new() {
-                TaurusDeamon = darkSouls.ReadEventFlag(UndeadBurgEvents.TaurusDeamon),
-                CapraDeamon = darkSouls.ReadEventFlag(UndeadBurgEvents.CapraDeamon),
-                BlackKnight = darkSouls.ReadEventFlag(UndeadBurgEvents.BlackKnight),
-                HellkiteFirst = darkSouls.ReadEventFlag(UndeadBurgEvents.HellkiteFirst),
-                HellkiteSecond = darkSouls.ReadEventFlag(UndeadBurgEvents.HellkiteSecond),
-                FogGate = darkSouls.ReadEventFlag(UndeadBurgEvents.FogGate),
-                ShortcutLadder = darkSouls.ReadEventFlag(UndeadBurgEvents.ShortcutLadder),
-                FlamingBarrel = darkSouls.ReadEventFlag(UndeadBurgEvents.FlamingBarrel),
-                LowerBurgShortcut = darkSouls.ReadEventFlag(UndeadBurgEvents.LowerBurgShortcut),
-                BasementKeyDoor = darkSouls.ReadEventFlag(UndeadBurgEvents.BasementKeyDoor),
-                WatchtowerUpperDoor = darkSouls.ReadEventFlag(UndeadBurgEvents.WatchtowerUpperDoor),
-                WatchtowerLowerDoor = darkSouls.ReadEventFlag(UndeadBurgEvents.WatchtowerLowerDoor),
-                SublightALtasGate = darkSouls.ReadEventFlag(UndeadBurgEvents.SublightALtasGate),
-                BlackFirebombChest = darkSouls.ReadEventFlag(UndeadBurgEvents.BlackFirebombChest),
-                GoldPineResinChest = darkSouls.ReadEventFlag(UndeadBurgEvents.GoldPineResinChest),
+                TaurusDeamon = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.TaurusDeamon),
+                CapraDeamon = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.CapraDeamon),
+                BlackKnight = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.BlackKnight),
+                HellkiteFirst = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.HellkiteFirst),
+                HellkiteSecond = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.HellkiteSecond),
+                FogGate = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.FogGate),
+                ShortcutLadder = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.ShortcutLadder),
+                FlamingBarrel = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.FlamingBarrel),
+                LowerBurgShortcut = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.LowerBurgShortcut),
+                BasementKeyDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.BasementKeyDoor),
+                WatchtowerUpperDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.WatchtowerUpperDoor),
+                WatchtowerLowerDoor = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.WatchtowerLowerDoor),
+                SublightALtasGate = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.SublightALtasGate),
+                BlackFirebombChest = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.BlackFirebombChest),
+                GoldPineResinChest = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadBurg.GoldPineResinChest),
             };
         }
 
-        public static UndeadParishData ReadUndeadParishData()
+        public static UndeadParishEvents<bool> ReadUndeadParishData()
         {
             return new() {
-                FirelinkElevator = darkSouls.ReadEventFlag(UndeadParishEvents.FirelinkElevator),
-                AltarOfSunlight = darkSouls.ReadEventFlag(UndeadParishEvents.AltarOfSunlight),
-                BerenikeKnight = darkSouls.ReadEventFlag(UndeadParishEvents.BerenikeKnight),
-                Channeler = darkSouls.ReadEventFlag(UndeadParishEvents.Channeler),
-                BellOfAwakening = darkSouls.ReadEventFlag(UndeadParishEvents.BellOfAwakening),
-                LightningSpear = darkSouls.ReadEventFlag(UndeadParishEvents.LightningSpear),
-                BellGargoyles = darkSouls.ReadEventFlag(UndeadParishEvents.BellGargoyles),
+                FirelinkElevator = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.FirelinkElevator),
+                AltarOfSunlight = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.AltarOfSunlight),
+                BerenikeKnight = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.BerenikeKnight),
+                Channeler = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.Channeler),
+                BellOfAwakening = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.BellOfAwakening),
+                LightningSpear = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.LightningSpear),
+                BellGargoyles = darkSouls.ReadEventFlag(Mappings.EventFlags.UndeadParish.BellGargoyles),
             };
         }
 
-        public static ValleyOfDrakesData ReadValleyOfDrakesData()
+        public static ValleyOfDrakesEvents<bool> ReadValleyOfDrakesData()
         {
             return new() {
-                DarkrootElevator = darkSouls.ReadEventFlag(ValleyOfDrakesEvents.DarkrootElevator),
-                DarkrootElevatorInoperable = darkSouls.ReadEventFlag(ValleyOfDrakesEvents.DarkrootElevatorInoperable),
-                KeyToTheSeal = darkSouls.ReadEventFlag(ValleyOfDrakesEvents.KeyToTheSeal),
+                DarkrootElevator = darkSouls.ReadEventFlag(Mappings.EventFlags.ValleyOfDrakes.DarkrootElevator),
+                DarkrootElevatorInoperable = darkSouls.ReadEventFlag(Mappings.EventFlags.ValleyOfDrakes.DarkrootElevatorInoperable),
+                KeyToTheSeal = darkSouls.ReadEventFlag(Mappings.EventFlags.ValleyOfDrakes.KeyToTheSeal),
             };
         }
 

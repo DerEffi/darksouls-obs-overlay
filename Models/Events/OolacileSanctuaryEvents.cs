@@ -1,6 +1,6 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class OolacileSanctuaryEvents
+    public class OolacileSanctuaryEvents<T>
     {
     }
 }

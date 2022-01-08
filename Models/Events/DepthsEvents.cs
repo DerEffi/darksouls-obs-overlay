@@ -1,8 +1,8 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class DepthsEvents
+    public class DepthsEvents<T>
     {
-        public const int BlighttownDoor = 11000111; //opened
-        public const int GapingDragon = 2; //defeated
+        public T BlighttownDoor; //opened
+        public T GapingDragon; //defeated
     }
 }

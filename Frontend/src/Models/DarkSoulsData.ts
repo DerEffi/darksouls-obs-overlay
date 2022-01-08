@@ -9,7 +9,7 @@ export default interface DarkSoulsData {
     Char: CharData;
     
     //EventFlags
-    Areas: {
+    Events: {
         Common: object;
         AnorLondo: object;
         Blighttown: object;

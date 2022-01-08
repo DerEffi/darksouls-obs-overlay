@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class OolacileTownshipEvents
+    public class OolacileTownshipEvents<T>
     {
-        public const int CrestKeyDoor = 11210650; //opened
+        public T CrestKeyDoor; //opened
     }
 }

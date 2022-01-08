@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class KilnOfTheFirstFlameEvents
+    public class KilnOfTheFirstFlameEvents<T>
     {
-        public const int Gwyn = 15; //defeated
+        public T Gwyn; //defeated
     }
 }

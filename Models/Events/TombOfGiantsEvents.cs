@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class TombOfGiantsEvents
+    public class TombOfGiantsEvents<T>
     {
-        public const int Nito = 7; //defeated
+        public T Nito; //defeated
     }
 }

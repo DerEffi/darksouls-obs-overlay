@@ -1,6 +1,6 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class AltarOfSunlightEvents
+    public class AltarOfSunlightEvents<T>
     {
     }
 }

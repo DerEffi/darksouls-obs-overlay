@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class QueelagsDomainEvents
+    public class QueelagsDomainEvents<T>
     {
-        public const int BellOfAwakening = 11400200;
+        public T BellOfAwakening;
     }
 }

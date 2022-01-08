@@ -75,7 +75,7 @@ class AdminView extends React.Component<ProviderContext, AdminViewState> {
                     <Button id="ShutdownButton" variant="contained" color="error" disabled={this.state.shutdown} startIcon={<PowerSettingsNewIcon/>} onClick={() => this.client.shutdown()}>{strings.Labels.Shutdown}</Button>
 
                     {!this.state.shutdown && <>
-                        {(!this.state.connected || !this.state.data || !this.state.data.Connected || !this.state.data.Loaded || !this.state.data.Char.CharacterName ) && <>
+                        {(!this.state.connected || !this.state.data || !this.state.data.Connected || !this.state.data.Char.CharacterName ) && <>
                             <div className="loading">
                                 <CircularProgress color="primary" />
                                 <Typography className="loading-text">{!this.state.connected ? strings.Labels.ConnectingService : !this.state.data || !this.state.data.Connected ? strings.Labels.ConnectingGame : strings.Labels.LoadSaveGame}</Typography>
@@ -131,9 +131,9 @@ class AdminView extends React.Component<ProviderContext, AdminViewState> {
 
     private displayData(data: DarkSoulsData): JSX.Element[] {
         let elements: JSX.Element[] = [];
-        let key: keyof typeof data.Areas;
-        for(key in data.Areas) {
-            elements.push(this.displayArea(data.Areas[key] as any, key));
+        let key: keyof typeof data.Events;
+        for(key in data.Events) {
+            elements.push(this.displayArea(data.Events[key] as any, key));
         }
         return elements;
     }

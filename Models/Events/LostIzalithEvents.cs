@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class LostIzalithEvents
+    public class LostIzalithEvents<T>
     {
-        public const int BedOfChaos = 10; //defeated
+        public T BedOfChaos; //defeated
     }
 }

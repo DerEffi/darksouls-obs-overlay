@@ -1,12 +1,12 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class AnorLondoEvents
+    public class AnorLondoEvents<T>
     {
-        public const int MainHallDoor = 11510200; //opened
-        public const int BlacksmithShortcutDoor = 11510210; //opened
-        public const int SolaireBonfireShortcutDoor = 11510251; //opened
-        public const int Dark = 11510272; //dark
-        public const int Gwyndolin = 11510900; //defeated
-        public const int OrnsteinSmough = 12; //defeated
+        public T MainHallDoor; //opened
+        public T BlacksmithShortcutDoor; //opened
+        public T SolaireBonfireShortcutDoor; //opened
+        public T Dark; //dark
+        public T Gwyndolin; //defeated
+        public T OrnsteinSmough; //defeated
     }
 }

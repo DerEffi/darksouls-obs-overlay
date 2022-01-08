@@ -1,6 +1,6 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class DukesArchivesEvents
+    public class DukesArchivesEvents<T>
     {
     }
 }

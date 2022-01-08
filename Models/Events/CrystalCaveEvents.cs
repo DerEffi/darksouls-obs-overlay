@@ -1,7 +1,7 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class CrystalCaveEvents
+    public class CrystalCaveEvents<T>
     {
-        public const int Seath = 14; //defeated
+        public T Seath; //defeated
     }
 }

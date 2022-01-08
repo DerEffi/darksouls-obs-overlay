@@ -1,8 +1,8 @@
 ﻿namespace DarkSoulsOBSOverlay.Models.Events
 {
-    public static class RoyalWoodsEvents
+    public class RoyalWoodsEvents<T>
     {
-        public const int Kalameet = 11210004; //defeated
-        public const int Artorias = 11210001; //defeated
+        public T Kalameet; //defeated
+        public T Artorias; //defeated
     }
 }
