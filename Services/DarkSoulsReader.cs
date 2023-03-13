@@ -249,6 +249,16 @@ namespace DarkSoulsOBSOverlay.Services
 
             if (force || !Helper.StatsAreEqual(LastStats, SavedStats))
             {
+#if DEBUG
+                try
+                {
+                    foreach(KeyValuePair<int, int> flag in SavedStats.UpdatedEventFlags)
+                    {
+                        Debug.WriteLine($"{SavedStats.Char.Clock} - {SavedStats.Char.Area} ({SavedStats.Char.AreaId}) - {flag.Key}: {flag.Value}");
+                    }
+                } catch { }
+#endif
+
                 try
                 {
                     if (SavedStats.Loaded && (ResettedStats == null || SavedStats.Char.Clock < ResettedStats.Clock || SavedStats.Char.SaveSlot != ResettedStats.SaveSlot || SavedStats.Char.CharacterName != ResettedStats.CharacterName))
